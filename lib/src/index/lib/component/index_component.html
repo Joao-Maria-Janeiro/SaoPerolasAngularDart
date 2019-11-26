@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="tittlez">
+        <br>
+        <br>
+        <h4>Bijuterias 2019</h4>
+        <br>
+        <div class="row">
+            <div *ngFor="let cover of covers" class="col-md-">
+                <a [routerLink]="getUrl(cover.type)">
+                    <img style="width: 300px;" src="{{cover.image}}" alt="">
+                    <p class="capitalize" style="color:gray;">{{cover.type}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+</div>
