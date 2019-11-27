@@ -20,5 +20,11 @@ class ProductService {
       return [];
     }
   }
+
+  Future<String> createProduct(dynamic form) async {
+      final response = await _http.post(baseUrl + "/products/image-test/", body: form);
+      return "Success";
+
+  }
   dynamic _extractData(Response resp) => json.decode(resp.body);
 }

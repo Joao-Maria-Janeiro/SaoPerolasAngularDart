@@ -7,7 +7,6 @@ import 'package:saoperolas/src/index/lib/service/index_service.dart';
 import 'package:saoperolas/src/products/lib/component/create_product_component.dart';
 import 'package:saoperolas/src/products/lib/component/display_product_component.dart';
 import 'package:saoperolas/src/products/lib/service/product_service.dart';
-import 'package:angular_forms/angular_forms.dart';
 import 'package:saoperolas/src/route_paths.dart';
 import 'package:saoperolas/src/routes.dart';
 import 'package:angular_router/angular_router.dart';

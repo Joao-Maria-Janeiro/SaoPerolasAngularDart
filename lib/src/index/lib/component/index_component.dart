@@ -16,7 +16,7 @@ class IndexComponent implements OnInit{
   IndexService _service;
   IndexComponent(this._service);
   List<Cover> covers;
-  int 
+
   String getUrl(String type) => RoutePaths.products_by_type.toUrl(parameters: {nameParam: '$type'});
 
   @override

@@ -21,7 +21,7 @@ class Routes {
   );
   static final all = <RouteDefinition>[
     index,
-    products,
     createProduct,
+    products,
   ];
 }
