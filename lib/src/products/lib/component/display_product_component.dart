@@ -6,21 +6,24 @@ import 'package:saoperolas/src/products/lib/service/product_service.dart';
 
 import '../../../route_paths.dart';
 
-@Component (
+@Component(
   selector: 'display-products',
-  directives: [coreDirectives,formDirectives, routerDirectives],
+  directives: [coreDirectives, formDirectives, routerDirectives],
   templateUrl: 'display_product_component.html',
   styleUrls: ['display_product_component.css'],
 )
-class DisplayProductComponent implements OnActivate{
+class DisplayProductComponent implements OnActivate {
   List<Product> products;
   final ProductService _service;
   DisplayProductComponent(this._service);
 
+  String getUrl(int id) =>
+      RoutePaths.product_details.toUrl(parameters: {idParam: '$id'});
 
   @override
   void onActivate(_, RouterState current) async {
     final productType = getName(current.parameters);
-    if (productType != null) products = await _service.getProductsForType(productType);
+    if (productType != null)
+      products = await _service.getProductsForType(productType);
   }
 }

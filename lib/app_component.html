@@ -34,12 +34,17 @@
 
 <div class="sidenav" id="mySidenav2">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+    <div *ngIf="loggedIn">
+        <a href="{% url 'saved_products' %}">Favoritos </a>
+        <a href="{% url 'user_info' %}">Editar Informaçoes </a>
+        <a href="{% url 'logout' %}">Terminar Sessão</a>
+    </div>
+    <a *ngIf="!loggedIn" [routerLink]="RoutePaths.login.toUrl()" >Iniciar Sessão</a>
     <!--{% if user.is_authenticated and user.userprofile.anonymous_user == False %}-->
     <!--<a href="{% url 'saved_products' %}">Favoritos </a>-->
     <!--<a href="{% url 'user_info' %}">Editar Informaçoes </a>-->
     <!--<a href="{% url 'logout' %}">Terminar Sessão</a>-->
     <!--{% else %}-->
-    <a href="{% url 'login' %}">Iniciar Sessão</a>
     <!--{% endif %}-->
 </div>
 
@@ -79,7 +84,7 @@
             </ul>
             <ul class="nav navbar-nav">
                 <li class="nav-item active">
-                    <span class="navbar-toggler-icon" onclick="openNav()"></span>&ensp;<a style="text-decoration:none;color:gray" href="#" onclick="openNav()">Menu</a>
+                    <span class="navbar-toggler-icon" onclick="openNav()"></span>&ensp;<a style="text-decoration:none;color:gray" onclick="openNav()">Menu</a>
                 </li>
             </ul>
             <ul class="nav justify-content-end">
@@ -98,5 +103,6 @@
     </nav>
 </div>
 
+<br>
 
 <router-outlet [routes]="Routes.all"></router-outlet>

@@ -1,0 +1,51 @@
+<br>
+<br>
+
+<div *ngIf="!loggedIn" class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 style="color:gray;" >Já sou utilizador São Pérolas</h3>
+            <p style="color:gray;">Introduza o seu email e a sua palavra-passe para se identificar.</p>
+                <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+                    <table class="table">
+                        <tr>
+                            <td><input id="id_email" [(ngModel)] = "email"
+                                       type="email" class="form-control" placeholder="Introduza aqui o seu email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input placeholder="password" required type="password"
+                                       class="form-control" [(ngModel)]="passwordz">
+                            </td>
+                        </tr>
+                    </table>
+                    <button [disabled]="!userForm.form.valid" class="btn btn-secondary" type="submit" name="button">INICIAR SESSÃO</button>
+
+                </form>
+
+                <p *ngIf="success==false" class=" label label-danger" style="color:red;">
+                    A palavra passe está incorreta ou o utilizador não existe, por favor tente novamente.
+                </p>
+
+            <br>
+        </div>
+        <div class="col-md-6">
+            <h3 style="color:gray;">Quero ser utilizador São Pérolas</h3>
+            <p style="color:gray;">Se ainda não é utilizador São Pérolas, registe-se aqui. </p>
+            <br>
+            <br>
+            <br>
+            <a [routerLink]="signup"><button type="submit" class="btn btn-secondary">CRIAR CONTA</button></a>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br>
+</div>
+
+<div *ngIf="loggedIn" class="container">
+    <h3>Já tem sessão iniciada</h3>
+</div>
