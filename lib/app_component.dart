@@ -29,11 +29,22 @@ class AppComponent implements OnInit{
   AppComponent(this._service);
   List<dynamic> types;
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
+  String username;
 
   String getUrl(String type) => RoutePaths.products_by_type.toUrl(parameters: {nameParam: '$type'});
+
+  void logOut() {
+    window.localStorage.remove('sao_perolas_key');
+    window.localStorage.remove('sao_perolas_email');
+    window.localStorage.remove('sao_perolas_username');
+    window.location.reload();
+  }
 
   @override
   Future<void> ngOnInit() async {
     types = await _service.getProductTypes();
+    if (loggedIn) {
+      username = window.localStorage['sao_perolas_username'];
+    }
   }
 }

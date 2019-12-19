@@ -26,10 +26,6 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a *ngFor="let type of types" class="nav-link capitalize" [routerLink]="getUrl(type)"  [routerLinkActive]="'active'">{{type}}</a>
-
-    <!--<a class="nav-link" [routerLink]="getUrl('colares')">Colares &emsp; &nbsp; &ensp;  ></a>-->
-    <!--<a class="nav-link" [routerLink]="getUrl('pulseiras')" >Pulseiras &emsp; &ensp; ></a>-->
-    <!--<a class="nav-link" [routerLink]="getUrl('brincos')">Brincos &emsp; &nbsp; &ensp; ></a>-->
 </div>
 
 <div class="sidenav" id="mySidenav2">
@@ -37,15 +33,9 @@
     <div *ngIf="loggedIn">
         <a href="{% url 'saved_products' %}">Favoritos </a>
         <a href="{% url 'user_info' %}">Editar Informaçoes </a>
-        <a href="{% url 'logout' %}">Terminar Sessão</a>
+        <a style="color: #818181;" (click)="logOut()">Terminar Sessão</a>
     </div>
     <a *ngIf="!loggedIn" [routerLink]="RoutePaths.login.toUrl()" >Iniciar Sessão</a>
-    <!--{% if user.is_authenticated and user.userprofile.anonymous_user == False %}-->
-    <!--<a href="{% url 'saved_products' %}">Favoritos </a>-->
-    <!--<a href="{% url 'user_info' %}">Editar Informaçoes </a>-->
-    <!--<a href="{% url 'logout' %}">Terminar Sessão</a>-->
-    <!--{% else %}-->
-    <!--{% endif %}-->
 </div>
 
 
@@ -62,11 +52,8 @@
             </ul>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <!--{% if user.is_authenticated and user.userprofile.anonymous_user == False %}-->
-                    <!--<a class="nav-link active" style="text-decoration:none;color:gray" href="#" onclick="openNav2()" > <i class="fas fa-user"></i> {{ user.userprofile.name }}</a>-->
-                    <!--{% else %}-->
-                    <a class="nav-link active" style="text-decoration:none;color:gray" onclick="openNav2()" > <i class="fas fa-user"></i> Conta</a>
-                    <!--{% endif %}-->
+                    <a *ngIf="loggedIn" class="nav-link active" style="text-decoration:none;color:gray" href="#" onclick="openNav2()" > <i class="fas fa-user"></i> {{ username }}</a>
+                    <a *ngIf="!loggedIn" class="nav-link active" style="text-decoration:none;color:gray" onclick="openNav2()" > <i class="fas fa-user"></i> Conta</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="text-decoration:none;color:gray" href=""> <i class="fas fa-shopping-bag"></i> Cesto de Compras</a>
@@ -89,11 +76,8 @@
             </ul>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <!--{% if user.is_authenticated and user.userprofile.anonymous_user == False %}-->
-                    <!--<a class="nav-link active" style="text-decoration:none;color:gray" href="#" onclick="openNav2()" > <i class="fas fa-user"></i> {{ user.userprofile.name }}</a>-->
-                    <!--{% else %}-->
-                    <a class="nav-link active" style="text-decoration:none;color:gray" onclick="openNav2()" > <i class="fas fa-user"></i></a>
-                    <!--{% endif %}-->
+                    <a *ngIf="loggedIn" class="nav-link active" style="text-decoration:none;color:gray" href="#" onclick="openNav2()" > <i class="fas fa-user"></i> {{ username }}</a>
+                    <a *ngIf="!loggedIn" class="nav-link active" style="text-decoration:none;color:gray" onclick="openNav2()" > <i class="fas fa-user"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="text-decoration:none;color:gray" href=""> <i class="fas fa-shopping-bag"></i></a>

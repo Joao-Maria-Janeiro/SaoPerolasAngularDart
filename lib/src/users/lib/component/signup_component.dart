@@ -23,9 +23,11 @@ class SignupComponent {
   void onSubmit() async {
     submitted = true;
     if(password1 != password2) {
-      error = "As passwords não são iguais";
+      error = 'As passwords não são iguais';
       return;
     }
+    String out = await _service.signup(email, password1, password2, firstName, lastName, country, address, zip, city, localidade, error, cell);
+    print(out);
   }
 
 }

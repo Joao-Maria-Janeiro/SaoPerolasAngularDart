@@ -17,7 +17,8 @@ class LoginComponent {
   LoginService _service;
   Router router;
   LoginComponent(this._service, this.router);
-  String email, passwordz, out;
+  String email, passwordz;
+  dynamic out;
   bool submitted, success;
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
   String signup = RoutePaths.signup.toUrl();
@@ -27,11 +28,13 @@ class LoginComponent {
     submitted = true;
     success = true;
     out = await _service.login(email, passwordz);
-    if(out.trim() != "null") {
+    if(!out.containsKey('error')) {
       success = true;
-      window.localStorage['sao_perolas_key'] = out;
+      window.localStorage['sao_perolas_key'] = out['token'];
       window.localStorage['sao_perolas_email'] = email;
+      window.localStorage['sao_perolas_username'] = out['username'];
       await router.navigate('/');
+      window.location.reload();
     } else {
       success = false;
     }
