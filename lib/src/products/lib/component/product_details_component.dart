@@ -22,8 +22,47 @@ class ProductDetailsComponent implements OnActivate {
   ProductDetailsComponent(this._service);
   Product product;
 
-  void addToCart(int id) {
-
+  void addToCart(int id, String name, double price, String image) {
+    if(!window.localStorage.containsKey('sao_perolas_key')) {
+      if(!window.localStorage.containsKey('sao_perolas_info')) {
+        window.localStorage['sao_perolas_info'] = jsonEncode(
+          {
+            'products': [
+              {
+                'id': id,
+                'name': name,
+                'quantity': 1,
+                'unit_price': price,
+                'image': image
+              }
+            ]
+          } 
+        );
+      } else {
+        bool found = false;
+        dynamic cart = jsonDecode(window.localStorage['sao_perolas_info']);
+        for (dynamic productz in cart['products']) {
+          if (productz['id'] == id) {
+            productz['quantity'] += 1;
+            found = true;
+          }
+        }
+        if (found == false) {
+          cart['products'].add(
+            {
+                'id': id,
+                'name': name,
+                'quantity': 1,
+                'unit_price': price,
+                'image': image
+              }
+          );
+        }
+        window.localStorage['sao_perolas_info'] = jsonEncode(cart);
+      }
+    } else {
+      
+    }
   }
 
   @override
