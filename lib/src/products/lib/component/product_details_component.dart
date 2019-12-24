@@ -21,6 +21,7 @@ class ProductDetailsComponent implements OnActivate {
   ProductService _service;
   ProductDetailsComponent(this._service);
   Product product;
+  bool added = false;
 
   void addToCart(int id, String name, double price, String image) {
     if(!window.localStorage.containsKey('sao_perolas_key')) {
@@ -61,8 +62,12 @@ class ProductDetailsComponent implements OnActivate {
         window.localStorage['sao_perolas_info'] = jsonEncode(cart);
       }
     } else {
-      
+      // TODO: handle logged in user
     }
+
+    added = true;
+    Future.delayed(Duration(milliseconds: 1500))
+        .then((onValue) => added = false);
   }
 
   @override

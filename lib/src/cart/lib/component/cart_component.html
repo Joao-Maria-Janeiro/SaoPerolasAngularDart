@@ -1,0 +1,120 @@
+<!-- <p *ngFor="let product of cart?.products"> {{product.name}}</p> -->
+
+
+<br>
+<br>
+<div class="container">
+    <div class="old">
+    <!-- {% if error %} -->
+        <!-- <p style="color:red;">Esta quantidade de artigos não está disponível</p> -->
+    <!-- {% endif %} -->
+    <!-- {% for c in cart.products.all|dictsort:"id" %} -->
+        <div *ngFor="let product of cart?.products" class="item">
+            <div class="buttons">
+                <a (click)="changeProductQuantity(product.id, 'remove')"><span class="delete-btnz"></span></a>
+            </div>
+            <div class="image">
+                <img src="{{ product?.imageUrl }}" width="70"/>
+            </div>
+
+            <div class="description">
+                <span>{{ product.name }}</span>
+            </div>
+
+            <div class="quantity">
+                <button class="minus-btnz" (click)="changeProductQuantity(product.id, 'substract')">
+                    <img src="minus.svg" alt="" />
+                </button>
+                {{product.quantity}}
+                <button class="plus-btnz" id="plus-btnz" (click)="changeProductQuantity(product.id, 'increase')">
+                    <img src="plus.svg" alt="" />
+                </button>
+            </div>
+
+        <div class="total-price">{{ product.unit_price }} €</div>
+        </div>
+    </div>
+
+    <table class="table">
+        <!-- {% if error %}
+        <p style="color:red;">Esta quantidade de artigos não está disponível</p>
+        {% endif %} -->
+        <thead>
+            <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Unidades</th>
+                <th scope="col">Montante</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of cart?.products">
+                <td>
+                    <div class="image">
+                        <img src="{{ product?.imageUrl }}" width="70"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="description">
+                        <span>{{ product.name }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="quantity">
+                        <button class="minus-btnz" (click)="changeProductQuantity(product.id, 'substract')">
+                            <img src="minus.svg" alt="" />
+                        </button>
+                        {{product.quantity}}
+                        <button class="plus-btnz" id="plus-btnz" (click)="changeProductQuantity(product.id, 'increase')">
+                            <img src="plus.svg" alt="" />
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="total-price">{{ product.unit_price }} €</div>
+                </td>
+                <td>
+                    <div class="item">
+                        <div class="buttons">
+                            <a (click)="changeProductQuantity(product.id, 'remove')"><span class="delete-btnz"></span></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<br>
+<div class="container">
+  
+    <div class="row">
+        <div class="col-md-8">
+            <p>Custos de Envio: 3€</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+        <h1>Preço Total: {{ cart?.total_price }} €</h1>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'products' %}"><button name="button" class="btn btn-secondary" style="margin-top:20px">Continuar a Comprar</button></a>
+        </div>
+
+        <div class="col-md-4">
+                <a href="{% url 'shipping_details' %}"><button type="Submit" name="button" class="btn btn-secondary" style="margin-top:20px">Finalizar Compra</button></a>
+        </div>
+    </div>
+</div>
+
+
+<br>
+

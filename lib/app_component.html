@@ -25,17 +25,17 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a *ngFor="let type of types" class="nav-link capitalize" [routerLink]="getUrl(type)"  [routerLinkActive]="'active'">{{type}}</a>
+    <a *ngFor="let type of types" class="nav-link capitalize" onclick="closeNav()" [routerLink]="getUrl(type)"  [routerLinkActive]="'active'">{{type}}</a>
 </div>
 
 <div class="sidenav" id="mySidenav2">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
     <div *ngIf="loggedIn">
-        <a href="{% url 'saved_products' %}">Favoritos </a>
-        <a href="{% url 'user_info' %}">Editar Informaçoes </a>
-        <a style="color: #818181;" (click)="logOut()">Terminar Sessão</a>
+        <a onclick="closeNav2()" href="{% url 'saved_products' %}">Favoritos </a>
+        <a onclick="closeNav2()" href="{% url 'user_info' %}">Editar Informaçoes </a>
+        <a onclick="closeNav2()" style="color: #818181;" (click)="logOut()">Terminar Sessão</a>
     </div>
-    <a *ngIf="!loggedIn" [routerLink]="RoutePaths.login.toUrl()" >Iniciar Sessão</a>
+    <a *ngIf="!loggedIn" onclick="closeNav2()" [routerLink]="RoutePaths.login.toUrl()" >Iniciar Sessão</a>
 </div>
 
 
@@ -56,7 +56,7 @@
                     <a *ngIf="!loggedIn" class="nav-link active" style="text-decoration:none;color:gray" onclick="openNav2()" > <i class="fas fa-user"></i> Conta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="text-decoration:none;color:gray" href=""> <i class="fas fa-shopping-bag"></i> Cesto de Compras</a>
+                    <a [routerLink]="RoutePaths.cart.toUrl()" class="nav-link" style="text-decoration:none;color:gray" href=""> <i class="fas fa-shopping-bag"></i> Cesto de Compras</a>
                 </li>
             </ul>
         </div>
@@ -80,7 +80,7 @@
                     <a *ngIf="!loggedIn" class="nav-link active" style="text-decoration:none;color:gray" onclick="openNav2()" > <i class="fas fa-user"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="text-decoration:none;color:gray" href=""> <i class="fas fa-shopping-bag"></i></a>
+                    <a [routerLink]="RoutePaths.cart.toUrl()" class="nav-link" style="text-decoration:none;color:gray" href=""> <i class="fas fa-shopping-bag"></i></a>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,11 @@
 <br>
 <br>
 <div class="container">
+
+    <div *ngIf="added" class="alert alert-success" role="alert">
+        Produto adicionado ao carrinho
+    </div>
+    
     <div class="row">
         <div class="col-md-6">
             <img class="img-fluid" style=" max-width: 100%; height: auto;display: block;" src="{{ product?.imageUrl }}">
@@ -31,6 +36,6 @@
 
         </div>
     </div>
-
 </div>
+
 <br><br><br>

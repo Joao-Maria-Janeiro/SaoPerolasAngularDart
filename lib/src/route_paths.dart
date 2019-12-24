@@ -8,6 +8,7 @@ class RoutePaths {
   static final create_product = RoutePath(path: 'products/create');
   static final login = RoutePath(path: 'login');
   static final signup = RoutePath(path: 'signup');
+  static final cart = RoutePath(path: 'cart');
   static final index = RoutePath(path: '/');
 }
 String getName(Map<String, String> parameters) {
