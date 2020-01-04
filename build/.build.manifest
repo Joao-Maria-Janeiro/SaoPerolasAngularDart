@@ -1,9 +1,11 @@
 .packages
+delete-icn.svg
 favicon.png
 graylogo.png
 index.html
 logo.png
 main.dart.js
+minus.svg
 packages/$sdk/_internal/ddc_sdk.sum
 packages/$sdk/_internal/strong.sum
 packages/$sdk/dev_compiler/amd/dart_sdk.js
@@ -292,12 +294,13 @@ packages/pedantic/analysis_options.1.5.0.yaml
 packages/pedantic/analysis_options.1.6.0.yaml
 packages/pedantic/analysis_options.1.7.0.yaml
 packages/pedantic/analysis_options.1.8.0.yaml
-packages/pedantic/analysis_options.1.9.0.yaml
 packages/pedantic/analysis_options.yaml
 packages/saoperolas/logo.png
+packages/saoperolas/pubspec.lock
 packages/test/dart.js
 packages/test/src/runner/browser/static/favicon.ico
 packages/test/src/runner/browser/static/host.css
 packages/test/src/runner/browser/static/host.dart.js
 packages/test/src/runner/browser/static/index.html
+plus.svg
 styles.css

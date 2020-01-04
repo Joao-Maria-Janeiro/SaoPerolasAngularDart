@@ -4,6 +4,8 @@
 
     <div *ngIf="added" class="alert alert-success" role="alert">
         Produto adicionado ao carrinho
+        <a [routerLink]="getUrl()" >Ver Carrinho</a>
+        <!-- <button class="btn btn-secondary" [routerLink]="getUrl()" >Ver Carrinho</button> -->
     </div>
     
     <div class="row">

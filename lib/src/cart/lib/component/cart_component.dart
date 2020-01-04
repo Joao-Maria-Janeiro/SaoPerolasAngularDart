@@ -33,9 +33,10 @@ class CartComponent implements OnActivate {
         } else {
           if (productz['quantity'] > 0) {
             productz['quantity'] -= 1;
-          } else {
-            productToDelete = productz;
-          }
+            if (productz['quantity'] == 0) {
+              productToDelete = productz;
+            }
+          } 
         }
       }
     }
@@ -62,6 +63,6 @@ class CartComponent implements OnActivate {
         total_price += (product['unit_price'] * product['quantity']);
       }
     );
-    return Cart(products, 3, total_price + 3);
+    return Cart(products, 3, total_price == 0 ? 0 : total_price + 3);
   }
 }

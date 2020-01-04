@@ -7,6 +7,9 @@ import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/products/lib/model/product.dart';
 import 'package:saoperolas/src/products/lib/service/product_service.dart';
 import 'package:image/image.dart';
+import 'package:saoperolas/src/route_paths.dart';
+import 'package:saoperolas/src/routes.dart';
+import 'package:angular_router/angular_router.dart';
 
 import '../../../route_paths.dart';
 
@@ -66,9 +69,11 @@ class ProductDetailsComponent implements OnActivate {
     }
 
     added = true;
-    Future.delayed(Duration(milliseconds: 1500))
+    Future.delayed(Duration(milliseconds: 2000))
         .then((onValue) => added = false);
   }
+
+  String getUrl() => RoutePaths.cart.toUrl();
 
   @override
   void onActivate(_, RouterState current) async {
