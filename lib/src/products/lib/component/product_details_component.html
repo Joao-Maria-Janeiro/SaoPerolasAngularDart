@@ -7,6 +7,15 @@
         <a [routerLink]="getUrl()" >Ver Carrinho</a>
         <!-- <button class="btn btn-secondary" [routerLink]="getUrl()" >Ver Carrinho</button> -->
     </div>
+
+    <div *ngIf="error!=''">
+        <p style="color: red;" *ngIf="error == 'login failed'">
+            A sua sessão expirou, por favor volte a iniciar sessão
+        </p>
+        <p style="color: red;" *ngIf="error == 'Not enough quantity'">
+            Este produto encontra-se temporarimante esgotado
+        </p>
+    </div>
     
     <div class="row">
         <div class="col-md-6">
@@ -28,9 +37,6 @@
                     <!--{% csrf_token %}-->
                     <!--<input type="hidden" name="id" value="{{brinco.id}}">-->
                     <!--{% if form.errors %}-->
-                    <!--<p class=" label label-danger">-->
-                        <!--{{ form.errors }}-->
-                    <!--</p>-->
                     <!--{% endif %}-->
                     <!--<input type="image" name="submit" value="Add To Favourites" src="{% static 'img/heart.png' %}" width="20" />-->
                 <!--</form>-->

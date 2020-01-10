@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
+import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 import 'package:saoperolas/src/products/lib/model/product.dart';
 import 'package:saoperolas/src/products/lib/service/product_service.dart';
 import 'package:image/image.dart';
@@ -22,11 +23,13 @@ import '../../../route_paths.dart';
 )
 class ProductDetailsComponent implements OnActivate {
   ProductService _service;
-  ProductDetailsComponent(this._service);
+  CartService _cartService;
+  ProductDetailsComponent(this._service, this._cartService);
   Product product;
   bool added = false;
+  String error;
 
-  void addToCart(int id, String name, double price, String image) {
+  Future<void> addToCart(int id, String name, double price, String image) async {
     if(!window.localStorage.containsKey('sao_perolas_key')) {
       if(!window.localStorage.containsKey('sao_perolas_info')) {
         window.localStorage['sao_perolas_info'] = jsonEncode(
@@ -65,9 +68,11 @@ class ProductDetailsComponent implements OnActivate {
         window.localStorage['sao_perolas_info'] = jsonEncode(cart);
       }
     } else {
-      // TODO: handle logged in user
+      error = await _cartService.addToCart(id, window.localStorage['sao_perolas_key']);
+      if( error != "") {
+        return;
+      }
     }
-
     added = true;
     Future.delayed(Duration(milliseconds: 2000))
         .then((onValue) => added = false);
