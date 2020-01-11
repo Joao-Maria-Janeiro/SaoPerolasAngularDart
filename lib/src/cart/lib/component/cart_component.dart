@@ -5,7 +5,6 @@ import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/cart/lib/model/cart.dart';
-import 'package:js/js.dart' as js;
 import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 
 
@@ -24,28 +23,32 @@ class CartComponent implements OnActivate {
 
 
   void changeProductQuantity(int id, String operation) {   
-    dynamic cartz = jsonDecode(window.localStorage['sao_perolas_info']);
-    dynamic productToDelete = null;
-    for (dynamic productz in cartz['products']) {
-      if (productz['id'] == id) {
-        if (operation == "remove") {
-          productToDelete = productz;
-        }
-        if (operation == "increase"){
-          productz['quantity'] += 1;
-        } else {
-          if (productz['quantity'] > 0) {
-            productz['quantity'] -= 1;
-            if (productz['quantity'] == 0) {
-              productToDelete = productz;
-            }
-          } 
+    if (!loggedIn) {
+      dynamic cartz = jsonDecode(window.localStorage['sao_perolas_info']);
+      dynamic productToDelete = null;
+      for (dynamic productz in cartz['products']) {
+        if (productz['id'] == id) {
+          if (operation == "remove") {
+            productToDelete = productz;
+          }
+          if (operation == "increase"){
+            productz['quantity'] += 1;
+          } else {
+            if (productz['quantity'] > 0) {
+              productz['quantity'] -= 1;
+              if (productz['quantity'] == 0) {
+                productToDelete = productz;
+              }
+            } 
+          }
         }
       }
+      cartz['products'].remove(productToDelete);
+      window.localStorage['sao_perolas_info'] = jsonEncode(cartz);
+      cart = getCartFromInputJson(cartz);
+    } else {
+      // TODO: handle logged in user
     }
-    cartz['products'].remove(productToDelete);
-    window.localStorage['sao_perolas_info'] = jsonEncode(cartz);
-    cart = getCartFromInputJson(cartz);
   }
 
   @override
