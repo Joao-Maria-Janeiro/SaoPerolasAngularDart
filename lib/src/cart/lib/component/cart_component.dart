@@ -6,6 +6,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/cart/lib/model/cart.dart';
 import 'package:js/js.dart' as js;
+import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 
 
 @Component (
@@ -18,6 +19,8 @@ class CartComponent implements OnActivate {
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
   Cart cart;
   dynamic cart_window = jsonDecode(window.localStorage['sao_perolas_info']);
+  CartService _cartService;
+  CartComponent(this._cartService);
 
 
   void changeProductQuantity(int id, String operation) {   
@@ -46,11 +49,11 @@ class CartComponent implements OnActivate {
   }
 
   @override
-  void onActivate(RouterState previous, RouterState current) {
+  void onActivate(RouterState previous, RouterState current) async {
     if (!loggedIn) {
       cart = getCartFromInputJson(cart_window);
     } else {
-      // TODO: handle logged in user
+      cart = await _cartService.getCartForUser(window.localStorage['sao_perolas_key']);
     }
   }
 
@@ -63,6 +66,6 @@ class CartComponent implements OnActivate {
         total_price += (product['unit_price'] * product['quantity']);
       }
     );
-    return Cart(products, 3, total_price == 0 ? 0 : total_price + 3);
+    return Cart(-1, products, 3, total_price == 0 ? 0 : total_price + 3);
   }
 }
