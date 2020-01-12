@@ -7,6 +7,8 @@ import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/cart/lib/model/cart.dart';
 import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 
+import '../../../constants.dart';
+
 
 @Component (
   selector: 'cart',
@@ -20,9 +22,10 @@ class CartComponent implements OnActivate {
   dynamic cart_window = jsonDecode(window.localStorage['sao_perolas_info']);
   CartService _cartService;
   CartComponent(this._cartService);
+  String error;
 
 
-  void changeProductQuantity(int id, String operation) {   
+  void changeProductQuantity(int id, String operation) async {   
     if (!loggedIn) {
       dynamic cartz = jsonDecode(window.localStorage['sao_perolas_info']);
       dynamic productToDelete = null;
@@ -47,7 +50,42 @@ class CartComponent implements OnActivate {
       window.localStorage['sao_perolas_info'] = jsonEncode(cartz);
       cart = getCartFromInputJson(cartz);
     } else {
-      // TODO: handle logged in user
+      error = await _cartService.updateProductQuantity(id, 1, operation, window.localStorage['sao_perolas_key']);
+      if(error.isEmpty) {
+        cart.products.forEach(
+          (product) {
+            if(product.id == id) {
+              if (operation == 'increase') {
+                product.quantity ++;
+                cart.total_price += product.unit_price;
+              } else if (operation == 'subtract') {
+                product.quantity --;
+                cart.total_price -= product.unit_price;
+              } else {
+                cart.products.remove(product);
+                cart.total_price -= product.unit_price * product.quantity;
+                if (cart.total_price == shipping_cost) {
+                  cart.total_price = 0;
+                }
+              }
+            }
+          }
+        );
+      } else {
+        if (error == 'A quantidade tem de ser maior que 0') {
+          cart.products.forEach(
+            (product) {
+              if(product.id == id) {
+                cart.products.remove(product);
+                cart.total_price -= product.unit_price;
+                if (cart.total_price == shipping_cost) {
+                  cart.total_price = 0;
+                }
+              }
+            }
+          );
+        }
+      }
     }
   }
 
@@ -65,10 +103,10 @@ class CartComponent implements OnActivate {
     double total_price = 0;
     (in_cart['products'] as List).forEach(
       (product) {
-        products.add(CartProduct(product['id'], product['name'], product['image'], product['unit_price'] * product['quantity'], product['quantity']));
+        products.add(CartProduct(product['id'], product['name'], product['image'], product['unit_price'], product['quantity']));
         total_price += (product['unit_price'] * product['quantity']);
       }
     );
-    return Cart(-1, products, 3, total_price == 0 ? 0 : total_price + 3);
+    return Cart(-1, products, shipping_cost, total_price == 0 ? 0 : total_price + shipping_cost);
   }
 }

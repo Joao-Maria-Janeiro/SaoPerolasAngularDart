@@ -27,10 +27,27 @@ class CartService {
       (clean['products'] as List)
         .map((product) => CartProduct.fromJson(product))
         .toList();
-      return Cart(clean['id'], products, 3, clean['total_price']);
+      return Cart(clean['id'], products, shipping_cost, clean['total_price']);
       return null;
     } catch(e) {
-      print((e.toString()));
+      return null;
+    }
+  }
+
+  Future<String> updateProductQuantity(int id, int quantity, String operation, String token) async {
+    try {
+      final response = await _http.post(baseUrl + "/cart/product/update/", headers: {'Authorization': 'Token ' + token}, 
+      body: jsonEncode(
+        {
+          'id': id, 
+          'quantity': quantity, 
+          'operation': operation
+        }
+      ));
+     return _extractData(response)['error'];
+    } catch(e) {
+      print(e.toString());
+      return "ERROR";
     }
   }
   
