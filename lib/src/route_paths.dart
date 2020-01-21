@@ -9,6 +9,7 @@ class RoutePaths {
   static final login = RoutePath(path: 'login');
   static final signup = RoutePath(path: 'signup');
   static final cart = RoutePath(path: 'cart');
+  static final shipping = RoutePath(path: 'shipping');
   static final index = RoutePath(path: '/');
 }
 String getName(Map<String, String> parameters) {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:saoperolas/src/route_paths.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
@@ -23,6 +24,7 @@ class CartComponent implements OnActivate {
   CartService _cartService;
   CartComponent(this._cartService);
   String error;
+  String shippingUrl = RoutePaths.shipping.toUrl();
 
 
   void changeProductQuantity(int id, String operation) async {   

@@ -8,6 +8,7 @@ import 'package:saoperolas/src/products/lib/component/product_details_component.
 import 'package:saoperolas/src/users/lib/component/login_component.template.dart' as login_c;
 import 'package:saoperolas/src/users/lib/component/signup_component.template.dart' as signup_c;
 import 'package:saoperolas/src/cart/lib/component/cart_component.template.dart' as cart_c;
+import 'package:saoperolas/src/cart/lib/component/shipping_component.template.dart' as shipping_c;
 
 
 class Routes {
@@ -40,12 +41,17 @@ class Routes {
     routePath: RoutePaths.cart,
     component: cart_c.CartComponentNgFactory,
   );
+  static final shipping = RouteDefinition(
+    routePath: RoutePaths.shipping,
+    component: shipping_c.ShippingComponentNgFactory,
+  );
   static final all = <RouteDefinition>[
     index,
     productDetails,
     login,
     signup,
     cart,
+    shipping,
     createProduct,
     products,
   ];
