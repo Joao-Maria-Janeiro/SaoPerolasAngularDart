@@ -17,45 +17,45 @@
                       <td><input [(ngModel)] = "full_name" required type="text" class="form-control"></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres">Morada</label></td>
-                      <td><input [(ngModel)] = "address" required id="id_addres" name="adress"
+                      <td><label>Morada</label></td>
+                      <td><input [(ngModel)] = "address" required name="adress"
                                  type="text" class="form-control" placeholder="Endereço, porta, andar ...."></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres1">Cidade</label></td>
-                      <td><input [(ngModel)] = "city" required id="id_addres1" name="city"
+                      <td><label>Cidade</label></td>
+                      <td><input [(ngModel)] = "city" required name="city"
                                  type="text" class="form-control" placeholder=""></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres1">Localidade</label></td>
-                      <td><input [(ngModel)] = "localidade" required id="id_addres1" name="localidade"
+                      <td><label>Localidade</label></td>
+                      <td><input [(ngModel)] = "localidade" required name="localidade"
                                  type="text" class="form-control" placeholder=""></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres1">Código Postal</label></td>
-                      <td><input [(ngModel)] = "zip" required id="id_addres1" name="zip"
+                      <td><label>Código Postal</label></td>
+                      <td><input [(ngModel)] = "zip" required name="zip"
                                  type="text" class="form-control" placeholder=""></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres1">País</label></td>
-                      <td><input [(ngModel)] = "country" required id="id_addres1" name="country"
+                      <td><label>País</label></td>
+                      <td><input [(ngModel)] = "country" required name="country"
                                  type="text" class="form-control" placeholder=""></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres1">Número de Telemóvel</label></td>
-                      <td><input [(ngModel)] = "cell" required id="id_addres1" name="phone_number"
+                      <td><label>Número de Telemóvel</label></td>
+                      <td><input [(ngModel)] = "cell" required name="phone_number"
                                  type="text" class="form-control" placeholder=""></td>
                   </tr>
                   <tr>
-                      <td><label for="id_addres1">Email</label></td>
-                      <td><input [(ngModel)] = "email" required id="id_addres1" name="email"
+                      <td><label>Email</label></td>
+                      <td><input [(ngModel)] = "email" required name="email"
                                  type="email" class="form-control" placeholder=""></td>
                   </tr>
               </table>
               <!-- {% if form.errors %}
                   <p class=" label label-danger">{{ form.errors }}</p>
               {% endif %} -->
-            <button (click)="submitShippingDetails()"></button>
+            <button class="btn btn-secondary" (click)="submitShippingDetails()">Seguir para métodos de pagamento</button>
           </form>
       </div>
   </div>
