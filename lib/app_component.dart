@@ -37,9 +37,7 @@ class AppComponent implements OnInit{
   String getUrl(String type) => RoutePaths.products_by_type.toUrl(parameters: {nameParam: '$type'});
 
   void logOut() {
-    window.localStorage.remove('sao_perolas_key');
-    window.localStorage.remove('sao_perolas_email');
-    window.localStorage.remove('sao_perolas_username');
+    window.localStorage.clear();
     window.location.reload();
   }
 

@@ -20,7 +20,7 @@ import '../../../constants.dart';
 class CartComponent implements OnActivate {
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
   Cart cart;
-  dynamic cart_window = jsonDecode(window.localStorage['sao_perolas_info']);
+  dynamic cart_window = window.localStorage.containsKey('sao_perolas_info') ? jsonDecode(window.localStorage['sao_perolas_info']) : {};
   CartService _cartService;
   CartComponent(this._cartService);
   String error;
@@ -97,18 +97,31 @@ class CartComponent implements OnActivate {
       cart = getCartFromInputJson(cart_window);
     } else {
       cart = await _cartService.getCartForUser(window.localStorage['sao_perolas_key']);
+      List products = 
+        cart.products.map((product) => 
+          {
+            'id': product.id, 
+            'name': product.name, 
+            'quantity': product.quantity, 
+            'unit_price': product.unit_price, 
+            'image': product.imageUrl
+          }
+        ).toList();
+      window.localStorage['sao_perolas_info'] = jsonEncode({'products': products});
     }
   }
 
   Cart getCartFromInputJson(dynamic in_cart) {
     List<CartProduct> products = [];
     double total_price = 0;
-    (in_cart['products'] as List).forEach(
-      (product) {
-        products.add(CartProduct(product['id'], product['name'], product['image'], product['unit_price'], product['quantity']));
-        total_price += (product['unit_price'] * product['quantity']);
-      }
-    );
+    if (in_cart.containsKey('products')) {
+      (in_cart['products'] as List).forEach(
+        (product) {
+          products.add(CartProduct(product['id'], product['name'], product['image'], product['unit_price'], product['quantity']));
+          total_price += (product['unit_price'] * product['quantity']);
+        }
+      );
+    }
     return Cart(-1, products, shipping_cost, total_price == 0 ? 0 : total_price + shipping_cost);
   }
 }

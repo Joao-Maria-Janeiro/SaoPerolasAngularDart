@@ -5,12 +5,12 @@
 
   <h1>Detalhes de envio</h1>
 
-    <button *ngIf="loggedIn" type="submit" class="btn btn-secondary" name="button">Quero usar os dados da minha conta</button>
+    <button *ngIf="loggedIn" (click)="setUserDetails(true)" class="btn btn-secondary" name="button">Quero usar os dados da minha conta</button>
   <br><br><br>
 
   <div id="content-container" class="container p-none">
       <div class="lgn-container col-lg-8">
-          <form id="form" method="post" action="{% url 'shipping_details' %}">
+          <form (ngSubmit)="submitShippingDetails()" #userForm="ngForm">
               <table class="table">
                   <tr>
                       <td><label>Nome Completo</label></td>
@@ -55,9 +55,11 @@
               <!-- {% if form.errors %}
                   <p class=" label label-danger">{{ form.errors }}</p>
               {% endif %} -->
-            <button class="btn btn-secondary" (click)="submitShippingDetails()">Seguir para métodos de pagamento</button>
+            <button class="btn btn-secondary" type="submit">Seguir para métodos de pagamento</button>
           </form>
       </div>
   </div>
 </div>
+
+<br>
 

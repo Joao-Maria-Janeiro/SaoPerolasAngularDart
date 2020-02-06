@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:saoperolas/src/cart/lib/model/cart.dart';
+import 'package:encrypt/encrypt.dart';
 
 import '../../../constants.dart';
 
@@ -28,7 +29,6 @@ class CartService {
         .map((product) => CartProduct.fromJson(product))
         .toList();
       return Cart(clean['id'], products, shipping_cost, clean['total_price']);
-      return null;
     } catch(e) {
       return null;
     }
@@ -46,8 +46,35 @@ class CartService {
       ));
      return _extractData(response)['error'];
     } catch(e) {
-      print(e.toString());
       return "ERROR";
+    }
+  }
+
+  Future<String> createPaymentIntentAndOrder(dynamic shipping, bool use_saved_details, String token, double total_price, String email, dynamic iv, dynamic encrypter, dynamic cart) async {
+    try {
+      var response;
+      if (use_saved_details) {
+        response = await _http.post(baseUrl + "/cart/create-intent/", body: jsonEncode({"token": token}));
+      } else {
+        response = await _http.post(baseUrl + "/cart/create-intent/", body: jsonEncode(
+          {
+            "email": shipping['email'],
+            "full_name": encrypter.decrypt(Encrypted.from64(shipping['full_name']), iv: iv),
+            "address": encrypter.decrypt(Encrypted.from64(shipping['address']), iv: iv),
+            "city": shipping['city'],
+            "localidade": shipping['localidade'],
+            "zip": shipping['zip'],
+            "country": shipping['country'],
+            "cell": encrypter.decrypt(Encrypted.from64(shipping['cell']), iv: iv),
+            "total_price": total_price,
+            "cart": cart['products']
+          }
+        ));
+      }
+      print(_extractData(response)['token']);
+      return _extractData(response)['token'];
+    } catch(e) {
+      print(e.toString());
     }
   }
   
