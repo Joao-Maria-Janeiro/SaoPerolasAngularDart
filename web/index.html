@@ -99,25 +99,24 @@
     });
 
     var form = document.getElementById('payment-form');
-    var clientSecret = 'pi_1G8s48KzVxKUyjYOTK7sbKZC_secret_10rbUIj9BYqr77XpfQzuCo0rE';
+    var clientSecret = window.localStorage['sao_perolas_order_token']
     form.addEventListener('submit', function(ev) {
       ev.preventDefault();
       document.getElementById('submit').disabled = true;
       stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
-          billing_details: {
-            name: 'Jenny Rosen'
-          }
         }
       }).then(function(result) {
         if (result.error) {
           // Show error to your customer (e.g., insufficient funds)
-          console.log(result.error.message);
+          document.getElementById('payment-form').insertAdjacentHTML('afterend', '<p class=" label label-danger" style="color:red" >'+ 'Ocorreu um erro com o seu pagamento, por favor tente novamente. Recomendamos que recarregue a página ou retroceda para a página anterior e tente novamente.' + '</p>');
         } else {
           // The payment has been processed!
           if (result.paymentIntent.status === 'succeeded') {
             console.log('Successful');
+            document.getElementById('payment-form').outerHTML = ""; 
+            document.getElementById('container').innerHTML = '<br><br><br><div class="text-center"><img style="width:90px" src = "https://i.ibb.co/dcqx1fh/check-mark-1.png"></img><br><br><p>A sua compra foi efetuada com sucesso</p><p>Irá receber um comprovativo por email</p></div><br><br>';
             // Show a success message to your customer
             // There's a risk of the customer closing the window before callback
             // execution. Set up a webhook or plugin to listen for the

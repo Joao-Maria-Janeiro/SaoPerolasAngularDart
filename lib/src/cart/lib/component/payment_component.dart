@@ -27,10 +27,12 @@ class CardMount {
 )
 
 class PaymentComponent implements AfterViewChecked {
+  bool loading = true;
   @override
   void ngAfterViewChecked() {
     Timer(Duration(seconds: 2), () {
       CardMount().card;
+      loading = false;
     });
   }  
 }

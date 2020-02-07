@@ -23,20 +23,23 @@ class ShippingComponent {
   CartService _cartService;
   ShippingComponent(this.router, this._cartService);
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
-  String full_name, address, city, localidade, zip, country, cell, email;
+  String full_name, address, city, localidade, zip, country, cell, email, errors;
 
   Future<void> setUserDetails(bool userServerDetails) async {
     if(userServerDetails) {
       window.localStorage['sao_perolas_use_saved_details'] = 'true';
       window.localStorage.remove('sao_perolas_shipping');
-    } else {
-      window.localStorage['sao_perolas_use_saved_details'] = 'false';
     }
-    window.localStorage['sao_perolas_order_token'] = await _cartService.createPaymentIntentAndOrder(null, userServerDetails, window.localStorage['sao_perolas_key'], 0, null, null, null, null);
-    await router.navigate(RoutePaths.payment.toUrl());
+    String output = await _cartService.createPaymentIntentAndOrder(null, userServerDetails, window.localStorage['sao_perolas_key'], 0, null, null, null, null);
+    if (output.startsWith("pi")) {
+      window.localStorage['sao_perolas_order_token'] = output;
+      await router.navigate(RoutePaths.payment.toUrl());
+    } else {
+      errors = output;
+    }   
   }
   Future<void> submitShippingDetails() async {
-    setUserDetails(false);
+    window.localStorage['sao_perolas_use_saved_details'] = 'false';
     final key = Key.fromUtf8('my 32 length key................');
     final iv = IV.fromSecureRandom(16);
     final encrypter = Encrypter(AES(key));
@@ -53,8 +56,13 @@ class ShippingComponent {
       }
     ); 
     window.localStorage['sao_perolas_shipping'] = shipping_details;
-    await _cartService.createPaymentIntentAndOrder(shipping_details, false, null, getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info']);
-    await router.navigate(RoutePaths.payment.toUrl());
+    String output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, null, getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info']);
+    if (output.startsWith("pi")) {
+      window.localStorage['sao_perolas_order_token'] = output;
+      await router.navigate(RoutePaths.payment.toUrl());
+    } else {
+      errors = output;
+    }   
   }
 
   Cart getCartFromInputJson(dynamic in_cart) {

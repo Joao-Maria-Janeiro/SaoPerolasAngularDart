@@ -56,6 +56,7 @@ class CartService {
       if (use_saved_details) {
         response = await _http.post(baseUrl + "/cart/create-intent/", body: jsonEncode({"token": token}));
       } else {
+        shipping = jsonDecode(shipping);
         response = await _http.post(baseUrl + "/cart/create-intent/", body: jsonEncode(
           {
             "email": shipping['email'],
@@ -67,14 +68,13 @@ class CartService {
             "country": shipping['country'],
             "cell": encrypter.decrypt(Encrypted.from64(shipping['cell']), iv: iv),
             "total_price": total_price,
-            "cart": cart['products']
+            "products": jsonDecode(cart)['products']
           }
         ));
       }
-      print(_extractData(response)['token']);
       return _extractData(response)['token'];
     } catch(e) {
-      print(e.toString());
+      return "";
     }
   }
   
