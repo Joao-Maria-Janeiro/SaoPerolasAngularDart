@@ -50,7 +50,7 @@ class CartService {
     }
   }
 
-  Future<String> createPaymentIntentAndOrder(dynamic shipping, bool use_saved_details, String token, double total_price, String email, dynamic iv, dynamic encrypter, dynamic cart) async {
+  Future<dynamic> createPaymentIntentAndOrder(dynamic shipping, bool use_saved_details, String token, double total_price, String email, dynamic iv, dynamic encrypter, dynamic cart) async {
     try {
       var response;
       if (use_saved_details) {
@@ -72,9 +72,9 @@ class CartService {
           }
         ));
       }
-      return _extractData(response)['token'];
+      return _extractData(response);
     } catch(e) {
-      return "";
+      return null;
     }
   }
   

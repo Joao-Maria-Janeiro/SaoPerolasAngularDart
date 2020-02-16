@@ -30,13 +30,16 @@ class ShippingComponent {
       window.localStorage['sao_perolas_use_saved_details'] = 'true';
       window.localStorage.remove('sao_perolas_shipping');
     }
-    String output = await _cartService.createPaymentIntentAndOrder(null, userServerDetails, window.localStorage['sao_perolas_key'], 0, null, null, null, null);
-    if (output.startsWith("pi")) {
-      window.localStorage['sao_perolas_order_token'] = output;
-      await router.navigate(RoutePaths.payment.toUrl());
+    dynamic output = await _cartService.createPaymentIntentAndOrder(null, userServerDetails, window.localStorage['sao_perolas_key'], 0, null, null, null, null);
+    if(output.containsKey('token')) {
+      if (output['token'].startsWith("pi")) {
+        window.localStorage['sao_perolas_order_token'] = output['token'];
+        window.localStorage['sao_perolas_order_secret'] = output['secret'];
+        await router.navigate(RoutePaths.payment.toUrl());
+      }
     } else {
-      errors = output;
-    }   
+      errors = output["error"];
+    } 
   }
   Future<void> submitShippingDetails() async {
     window.localStorage['sao_perolas_use_saved_details'] = 'false';
@@ -56,12 +59,15 @@ class ShippingComponent {
       }
     ); 
     window.localStorage['sao_perolas_shipping'] = shipping_details;
-    String output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, null, getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info']);
-    if (output.startsWith("pi")) {
-      window.localStorage['sao_perolas_order_token'] = output;
-      await router.navigate(RoutePaths.payment.toUrl());
+    dynamic output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, null, getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info']);
+    if(output.containsKey('token')) {
+      if (output['token'].startsWith("pi")) {
+        window.localStorage['sao_perolas_order_token'] = output['token'];
+        window.localStorage['sao_perolas_order_secret'] = output['secret'];
+        await router.navigate(RoutePaths.payment.toUrl());
+      }
     } else {
-      errors = output;
+      errors = output["error"];
     }   
   }
 
