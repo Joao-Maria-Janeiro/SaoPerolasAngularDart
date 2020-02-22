@@ -16,11 +16,13 @@ class IndexComponent implements OnInit{
   IndexService _service;
   IndexComponent(this._service);
   List<Cover> covers;
+  Background background;
 
   String getUrl(String type) => RoutePaths.products_by_type.toUrl(parameters: {nameParam: '$type'});
 
   @override
   Future<void> ngOnInit() async {
     covers = await _service.getCoverPhotos();
+    background = await _service.getBackGroundPhotos();
   }
 }

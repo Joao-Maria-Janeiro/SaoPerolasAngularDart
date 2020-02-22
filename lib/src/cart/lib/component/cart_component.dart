@@ -37,7 +37,13 @@ class CartComponent implements OnActivate {
             productToDelete = productz;
           }
           if (operation == "increase"){
-            productz['quantity'] += 1;
+            if(productz['quantity'] + 1 <= productz['available_quantity']) {
+              productz['quantity'] += 1;
+            } else {
+              error = "A quantidade pretendida não está disponível";
+              Future.delayed(Duration(milliseconds: 2000))
+                .then((onValue) => error = "");
+            }
           } else {
             if (productz['quantity'] > 0) {
               productz['quantity'] -= 1;

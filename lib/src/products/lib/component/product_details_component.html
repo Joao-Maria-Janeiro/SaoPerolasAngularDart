@@ -1,5 +1,7 @@
 <br>
 <br>
+<br>
+
 <div class="container">
 
     <div *ngIf="added" class="alert alert-success" role="alert">
@@ -28,7 +30,7 @@
 
             <!--{% if brinco.quantity > 0 %}-->
             <div *ngIf="product != null">
-                <button *ngIf="product.quantity > 0" (click)="addToCart(product.id, product.name, product.price, product.imageUrl)" class="btn btn-secondary pull-right" name="button">Adicionar ao Carrinho</button>
+                <button *ngIf="product.quantity > 0" (click)="addToCart(product.id, product.name, product.price, product.imageUrl, product.quantity)" class="btn btn-secondary pull-right" name="button">Adicionar ao Carrinho</button>
                 <span *ngIf="product?.quantity <= 0">Este produto encontra-se temporarimante esgotado</span>
             </div>
            <br><br>

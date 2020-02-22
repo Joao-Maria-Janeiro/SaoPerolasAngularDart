@@ -29,41 +29,58 @@ class ProductDetailsComponent implements OnActivate {
   bool added = false;
   String error;
 
-  Future<void> addToCart(int id, String name, double price, String image) async {
+  Future<void> addToCart(int id, String name, double price, String image, int quantity) async {
     if(!window.localStorage.containsKey('sao_perolas_key')) {
       if(!window.localStorage.containsKey('sao_perolas_info')) {
-        window.localStorage['sao_perolas_info'] = jsonEncode(
-          {
-            'products': [
-              {
-                'id': id,
-                'name': name,
-                'quantity': 1,
-                'unit_price': price,
-                'image': image
-              }
-            ]
-          } 
-        );
+        if(quantity > 0) {
+          window.localStorage['sao_perolas_info'] = jsonEncode(
+            {
+              'products': [
+                {
+                  'id': id,
+                  'name': name,
+                  'quantity': 1,
+                  'unit_price': price,
+                  'image': image,
+                  'available_quantity': quantity
+                }
+              ]
+            } 
+          );
+        } else {
+          error = "Not enough quantity";
+          return;
+        }
       } else {
         bool found = false;
         dynamic cart = jsonDecode(window.localStorage['sao_perolas_info']);
         for (dynamic productz in cart['products']) {
           if (productz['id'] == id) {
-            productz['quantity'] += 1;
-            found = true;
+            if(productz['quantity'] + 1 <= quantity) {
+              productz['quantity'] += 1;
+              found = true;
+            } else {
+              error = "Not enough quantity";
+              return;        
+            }
           }
         }
         if (found == false) {
-          cart['products'].add(
-            {
-                'id': id,
-                'name': name,
-                'quantity': 1,
-                'unit_price': price,
-                'image': image
-              }
-          );
+          if(quantity > 0) {
+            cart['products'].add(
+              {
+                  'id': id,
+                  'name': name,
+                  'quantity': 1,
+                  'unit_price': price,
+                  'image': image,
+                  'available_quantity': quantity
+                }
+            );
+          } else {
+            error = "Not enough quantity";
+            return;
+          }
         }
         window.localStorage['sao_perolas_info'] = jsonEncode(cart);
       }

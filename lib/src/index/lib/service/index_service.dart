@@ -20,5 +20,16 @@ class IndexService {
       return [];
     }
   }
+
+  Future<Background> getBackGroundPhotos() async {
+    try {
+      final response = await _http.get(baseUrl + "/products/cover-photos/");
+      var clean = _extractData(response);
+      return Background.fromJson(clean[0]);
+    } catch(e) {
+      return null;
+    }
+  }
+
   dynamic _extractData(Response resp) => json.decode(resp.body);
 }

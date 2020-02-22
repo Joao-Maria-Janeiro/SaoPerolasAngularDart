@@ -1,9 +1,14 @@
 <!-- <p *ngFor="let product of cart?.products"> {{product.name}}</p> -->
 
-
+<br>
 <br>
 <br>
 <div class="container">
+    <div *ngIf="error!=''">
+        <p style="color: red;" >
+           {{error}}
+        </p>
+    </div>
     <div class="old">
     <!-- {% if error %} -->
         <!-- <p style="color:red;">Esta quantidade de artigos não está disponível</p> -->

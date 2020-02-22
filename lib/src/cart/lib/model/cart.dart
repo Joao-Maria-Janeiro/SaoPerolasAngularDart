@@ -11,7 +11,7 @@ factory CartProduct.fromJson(Map<String, dynamic> product) =>
   CartProduct(
     product['id'],
     product['productz']['name'],
-    baseUrl + product['productz']['image'],
+    product['productz']['image'],
     product['productz']['price'],
     product['quantity']
   );

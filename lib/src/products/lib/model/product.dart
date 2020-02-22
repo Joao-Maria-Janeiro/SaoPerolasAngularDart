@@ -13,7 +13,7 @@ class Product {
         product['id'],
         product['name'],
         product['description'],
-        baseUrl + product['image'],
+        product['image'],
         product['product_type'],
         product['price'],
         product['available_quantity']
