@@ -3,9 +3,9 @@
 <br>
 
 
-<!--<input type="file" (change)="onFileChanged($event)">-->
+<!-- <input type="file" (change)="onFileChanged($event)"> -->
 
-<div class="col-md-8">
+<!-- <div class="col-md-8">
     <div class="input-group mb-3">
         <div class="custom-file">
             <input type="file" (change)="onFileChanged($event)" class="custom-file-input" id="inputGroupFile02">
@@ -17,4 +17,70 @@
     </div>
 </div>
 
-<img [src]="file?.relativePath">
+<img [src]="file?.relativePath"> -->
+
+
+<!-- <div class="container">
+    <input type="file" id="fileInput" accept="image/*" />
+    <canvas id="canva"></canvas>
+    <img id="image" src="../logo.png">
+</div> -->
+
+<div class="container">
+    <p>
+        <input type="file" id="fileInput" accept="image/*" />
+        <input type="button" id="btnCrop" value="Crop" />
+</p>
+<div>
+  <canvas id="canvas">
+    Your browser does not support the HTML5 canvas element.
+  </canvas>
+</div>		
+
+<br>
+
+<!-- <div id="result" style="width: 200px;"></div> -->
+
+<div class="row">
+    <div class="col-md-6">
+        <label>Nome</label>
+    </div>
+    <div class="col-md-6">
+        <input class="form-control" type="text">
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <label class="col-md-6">Descrição</label>
+    <textarea class="form-control col-md-6" type="text"></textarea>
+</div>
+
+<br>
+
+<div class="row">
+    <label class="col-md-6">Preço</label>
+    <input class="form-control col-md-6" type="number">
+</div>
+
+<br>
+
+<div class="row">
+    <label class="col-md-6">Quantidade Disponível</label>
+    <input class="form-control col-md-6" type="number">
+</div>
+
+<br>
+
+<div class="row">
+    <label class="col-md-6">Tipo de produto</label>
+    <input class="form-control col-md-6" type="text">
+</div>
+
+<br>
+
+<p *ngFor="let type of types">{{type}}</p>
+
+
+</div>
