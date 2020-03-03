@@ -10,6 +10,7 @@ import 'package:saoperolas/src/users/lib/component/signup_component.template.dar
 import 'package:saoperolas/src/cart/lib/component/cart_component.template.dart' as cart_c;
 import 'package:saoperolas/src/cart/lib/component/shipping_component.template.dart' as shipping_c;
 import 'package:saoperolas/src/cart/lib/component/payment_component.template.dart' as payment_c;
+import 'package:saoperolas/src/users/lib/component/favourites_component.template.dart' as favourites_c;
 
 
 class Routes {
@@ -50,6 +51,10 @@ class Routes {
     routePath: RoutePaths.payment,
     component: payment_c.PaymentComponentNgFactory,
   );
+  static final favourites = RouteDefinition(
+    routePath: RoutePaths.favourites,
+    component: favourites_c.FavouritesComponentNgFactory,
+  );
   static final all = <RouteDefinition>[
     index,
     productDetails,
@@ -59,6 +64,7 @@ class Routes {
     shipping,
     createProduct,
     payment,
+    favourites,
     products,
   ];
 }

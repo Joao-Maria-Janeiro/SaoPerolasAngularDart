@@ -2,14 +2,12 @@
 library k;
 
 import 'dart:async';
-import 'dart:convert';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/products/lib/service/product_service.dart';
-import 'package:image/image.dart';
 import 'package:js/js.dart';
 
 @JS()
@@ -28,21 +26,14 @@ class LetsCrop {
 )
 class CreateProductComponent implements OnInit, AfterViewChecked {
   ProductService _service;
-  ProductService _productService;
-  CreateProductComponent(this._service, this._productService);
+  CreateProductComponent(this._service);
   File file = null;
   var trimmed = null;
   List<dynamic> types;
-
-  Future<void> onFileChanged(event) async {
-    file = event.target.files[0];
-    var reader = new FileReader()..readAsArrayBuffer(file);
-    await reader.onLoadEnd.first;
-    List<int> result = reader.result;
-    Image image = decodeJpg(result);
-//    trimmed = encodePng(copyCrop(image, (image.width - 100)~/2, (image.height - 100)~/2, 100, 100));
-//    await _service.createProduct(base64Encode(result));
-  }
+  String name, description, prodType;
+  double price, quantity;
+  String error = '';
+  bool success = false;
 
   @override
   void ngAfterViewChecked() {
@@ -54,6 +45,15 @@ class CreateProductComponent implements OnInit, AfterViewChecked {
   @override
   void ngOnInit() async {
     types = await _service.getProductTypes();
+  }
+
+  void submitDetails() async {
+    if(window.localStorage.containsKey('sao_perolas_key')) {
+      error = await _service.createProduct(name, description, prodType, price, quantity, window.localStorage['upload_image_blob'], window.localStorage['sao_perolas_key']);
+      if (error == "") {
+        success = true;
+      }
+    }
   }
 
 }

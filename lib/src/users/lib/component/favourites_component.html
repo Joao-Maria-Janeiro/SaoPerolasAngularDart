@@ -1,0 +1,11 @@
+<br>
+
+<p style="color: red;">{{error}}</p>
+
+<div class="container-3">
+    <div *ngFor="let product of products" class="col-md-3-b">
+        <div class="thumbnail">
+            <a [routerLink]="getUrl(product.id)"><img src="{{product.imageUrl}}"/></a>
+        </div>
+    </div>
+</div>

@@ -27,9 +27,14 @@ class ProductService {
     return Product.fromJson(clean);
   }
 
-  Future<String> createProduct(dynamic form) async {
-      final response = await _http.post(baseUrl + "/products/image-test/", body: form);
-      return "Success";
+  Future<String> createProduct(String name, String description, String prodType, double price, double quantity, dynamic image, String token) async {
+    try {
+      final response = await _http.post(baseUrl + "/products/create/", headers: {'Authorization': 'Token ' + token}, body: jsonEncode({'name': name, 'description': description, 'type': prodType, 'price': price.toString(), 'quantity': quantity.toString(), 'image': image}));
+      var clean = _extractData(response);
+      return clean['error'];
+    } catch(e) {
+      return "Erro ao tentar fazer o pedido ao servidor";
+    }
 
   }
 

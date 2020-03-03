@@ -118,11 +118,6 @@
             if (result.paymentIntent.status === 'succeeded') {
               document.getElementById('payment-form').outerHTML = ""; 
               document.getElementById('container').innerHTML = '<br><br><br><div class="text-center"><img style="width:90px" src = "https://i.ibb.co/dcqx1fh/check-mark-1.png"></img><br><br><p>A sua compra foi efetuada com sucesso</p><p>Irá receber um comprovativo por email</p></div><br><br>';
-              // Show a success message to your customer
-              // There's a risk of the customer closing the window before callback
-              // execution. Set up a webhook or plugin to listen for the
-              // payment_intent.succeeded event that handles any business critical
-              // post-payment actions.
 
               window.localStorage['sao_perolas_info'] = JSON.stringify("{}");
               window.localStorage.removeItem('sao_perolas_order_token');
@@ -157,57 +152,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script>
       function letsCrop() {
-        const canvasz = document.getElementById('canva');
+        if(document.getElementById("canvas")) {
+          var canvas  = $("#canvas"),
+          context = canvas.get(0).getContext("2d"),
+          $result = $('#result');
 
-                var canvas  = $("#canvas"),
-    context = canvas.get(0).getContext("2d"),
-    $result = $('#result');
-
-        $('#fileInput').on( 'change', function(){
-    if (this.files && this.files[0]) {
-      if ( this.files[0].type.match(/^image\//) ) {
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-           var img = new Image();
-           img.onload = function() {
-             context.canvas.height = img.height;
-             context.canvas.width  = img.width;
-             context.drawImage(img, 0, 0);
-             var cropper = new Cropper(context.canvas, {
-               aspectRatio: 1 / 1
-             });
-             var i = 0;
-             $('#btnCrop').click(function() {
-                // Get a string base 64 data url
-                if(i == 0) {
-                  var croppedImageDataURL = cropper.getCroppedCanvas().toDataURL("image/png"); 
-                  cropper.getCroppedCanvas().toBlob((blob) => {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(blob); 
-                    reader.onloadend = function() {
-                        var base64data = reader.result;                
-                        window.localStorage['upload_image_blob'] = base64data;
-                    }
-
-
-                  });
-                $result.append( $('<img>').attr('src', croppedImageDataURL) );
-                }
-                i++;
-             });
-           };
-           img.src = evt.target.result;
-				};
-        reader.readAsDataURL(this.files[0]);
-      }
-      else {
-        alert("Invalid file type! Please select an image file.");
-      }
-    }
-    else {
-      alert('No file(s) selected.');
-    }
-});
+          $('#fileInput').on( 'change', function(){
+            if (this.files && this.files[0]) {
+              if ( this.files[0].type.match(/^image\//) ) {
+                var reader = new FileReader();
+                reader.onload = function(evt) {
+                  var img = new Image();
+                  img.onload = function() {
+                    context.canvas.height = img.height;
+                    context.canvas.width  = img.width;
+                    context.drawImage(img, 0, 0);
+                    var cropper = new Cropper(context.canvas, {
+                      aspectRatio: 1 / 1
+                    });
+                    var i = 0;
+                    $('#btnCrop').click(function() {
+                        if(i == 0) {
+                          var croppedImageDataURL = cropper.getCroppedCanvas({width: 400, height: 400}).toDataURL("image/png"); 
+                          window.localStorage['upload_image_blob'] = croppedImageDataURL;
+                          $result.append( $('<img>').attr('src', croppedImageDataURL) );
+                        }
+                        i++;
+                    });
+                  };
+                  img.src = evt.target.result;
+				        };
+                reader.readAsDataURL(this.files[0]);
+              } else {
+                alert("Invalid file type! Please select an image file.");
+              }
+            } else {
+              alert('No file(s) selected.');
+            }
+          });
+        }
       }
     </script>
   </body>

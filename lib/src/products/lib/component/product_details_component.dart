@@ -5,9 +5,9 @@ import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
+import 'package:saoperolas/src/users/lib/service/login_service.dart';
 import 'package:saoperolas/src/products/lib/model/product.dart';
 import 'package:saoperolas/src/products/lib/service/product_service.dart';
-import 'package:image/image.dart';
 import 'package:saoperolas/src/route_paths.dart';
 import 'package:saoperolas/src/routes.dart';
 import 'package:angular_router/angular_router.dart';
@@ -24,7 +24,9 @@ import '../../../route_paths.dart';
 class ProductDetailsComponent implements OnActivate {
   ProductService _service;
   CartService _cartService;
-  ProductDetailsComponent(this._service, this._cartService);
+  LoginService _userService;
+  Router router;
+  ProductDetailsComponent(this._service, this._cartService, this._userService, this.router);
   Product product;
   bool added = false;
   String error;
@@ -93,6 +95,14 @@ class ProductDetailsComponent implements OnActivate {
     added = true;
     Future.delayed(Duration(milliseconds: 2000))
         .then((onValue) => added = false);
+  }
+
+  void addToFavourites(int id) async {
+    if (window.localStorage.containsKey('sao_perolas_key')) {
+      error = await _userService.addToFavourites(id, window.localStorage['sao_perolas_key']);
+    } else {
+      await router.navigate(RoutePaths.login.toUrl());
+    }
   }
 
   String getUrl() => RoutePaths.cart.toUrl();

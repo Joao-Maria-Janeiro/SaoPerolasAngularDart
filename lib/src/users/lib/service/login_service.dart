@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'package:saoperolas/src/products/lib/model/product.dart';
 import 'dart:convert';
 
 import '../../../constants.dart';
@@ -40,5 +41,27 @@ class LoginService {
     }
   }
 
+  Future<String> addToFavourites(int id, String token) async {
+    try {
+      final response = await _http.post(baseUrl + "/users/add-to-favs", headers: {'Authorization': 'Token ' + token}, body: jsonEncode({'id': id}));
+      var clean = _extractData(response);
+      return clean;
+    } catch(e) {
+      return "Erro ao conectar com o servidor";
+    }
+  }
+
+  Future<List<Product>> getFavourites(String token) async {
+    try {
+      final response = await _http.get(baseUrl + "/users/get-favs", headers: {'Authorization': 'Token ' + token});
+      var clean = _extractData(response);
+      return (clean as List)
+        .map((product) => Product.fromJson(product))
+        .toList();
+    } catch(e) {
+      return [];
+    }
+  }
+  
   dynamic _extractData(Response resp) => json.decode(resp.body);
 }

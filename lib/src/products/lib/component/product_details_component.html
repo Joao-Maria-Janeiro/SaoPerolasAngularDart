@@ -28,22 +28,12 @@
             <p>{{ product?.description }}</p>
             <p>{{ product?.price }}€</p>
 
-            <!--{% if brinco.quantity > 0 %}-->
             <div *ngIf="product != null">
                 <button *ngIf="product.quantity > 0" (click)="addToCart(product.id, product.name, product.price, product.imageUrl, product.quantity)" class="btn btn-secondary pull-right" name="button">Adicionar ao Carrinho</button>
                 <span *ngIf="product?.quantity <= 0">Este produto encontra-se temporarimante esgotado</span>
             </div>
            <br><br>
-            <!--<div class="lgn-container col-lg-8">-->
-                <!--<form id="form" action="{% url 'add_to_favourites' %}" method="post">-->
-                    <!--{% csrf_token %}-->
-                    <!--<input type="hidden" name="id" value="{{brinco.id}}">-->
-                    <!--{% if form.errors %}-->
-                    <!--{% endif %}-->
-                    <!--<input type="image" name="submit" value="Add To Favourites" src="{% static 'img/heart.png' %}" width="20" />-->
-                <!--</form>-->
-            <!--</div>-->
-
+           <input type="image" (click)="addToFavourites(product.id)" src="heart.png" alt="" width="20">
         </div>
     </div>
 </div>

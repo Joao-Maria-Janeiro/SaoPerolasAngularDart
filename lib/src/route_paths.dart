@@ -11,6 +11,7 @@ class RoutePaths {
   static final cart = RoutePath(path: 'cart');
   static final shipping = RoutePath(path: 'shipping');
   static final payment = RoutePath(path: 'payment');
+  static final favourites = RoutePath(path: 'favourites');
   static final index = RoutePath(path: '/');
 }
 String getName(Map<String, String> parameters) {
