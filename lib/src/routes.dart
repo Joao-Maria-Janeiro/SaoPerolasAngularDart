@@ -11,6 +11,7 @@ import 'package:saoperolas/src/cart/lib/component/cart_component.template.dart' 
 import 'package:saoperolas/src/cart/lib/component/shipping_component.template.dart' as shipping_c;
 import 'package:saoperolas/src/cart/lib/component/payment_component.template.dart' as payment_c;
 import 'package:saoperolas/src/users/lib/component/favourites_component.template.dart' as favourites_c;
+import 'package:saoperolas/src/users/lib/component/update_details_component.template.dart' as update_details_c;
 
 
 class Routes {
@@ -55,6 +56,10 @@ class Routes {
     routePath: RoutePaths.favourites,
     component: favourites_c.FavouritesComponentNgFactory,
   );
+  static final update_details = RouteDefinition(
+    routePath: RoutePaths.update_details,
+    component: update_details_c.UpdateDetailsComponentNgFactory,
+  );
   static final all = <RouteDefinition>[
     index,
     productDetails,
@@ -65,6 +70,7 @@ class Routes {
     createProduct,
     payment,
     favourites,
+    update_details,
     products,
   ];
 }
