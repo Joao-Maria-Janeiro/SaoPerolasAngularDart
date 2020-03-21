@@ -5,7 +5,7 @@
 <br>
 <br>
 
-<div class="container">
+<div *ngIf="submitted==false" class="container">
   <br>
   <br>
   <h4 style="color:gray;">Edite os seus dados pessoais</h4>
@@ -15,47 +15,47 @@
   <form id="signup-form" (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="email" class="form-control" id="id_email" name="email" placeholder="{{user.email}}">
+        <input type="email" [(ngModel)]="email" class="form-control" id="id_email" name="email" placeholder="{{user?.email}}">
       </div>
     </div>
     <br>
     <br>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="id_first_name" name="first_name" placeholder="{{user.name}}">
+        <input type="text" [(ngModel)]="first_name" class="form-control" id="id_first_name" name="first_name" placeholder="{{user?.name}}">
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="id_last_name" name="last_name" placeholder="{{user.last_name}}">
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="id_country" name="country" placeholder="{{user.country}}">
-      </div>
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="id_address" name="address" placeholder="{{user.address}}">
+        <input type="text" [(ngModel)]="last_name" class="form-control" id="id_last_name" name="last_name" placeholder="{{user?.last_name}}">
       </div>
     </div>
     <br>
     <br>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control" name="zip_code" id="id_zip_code" placeholder="{{user.zip_code}}">
+        <input type="text" [(ngModel)]="country" class="form-control" id="id_country" name="country" placeholder="{{user?.country}}">
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control" name="city" id="id_city" placeholder="{{user.city}}">
+        <input type="text" [(ngModel)]="address" class="form-control" id="id_address" name="address" placeholder="{{user?.address}}">
       </div>
     </div>
     <br>
     <br>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input  type="text" class="form-control" name="localidade" id="id_localidade" placeholder="{{user.localidade}}">
+        <input type="text" [(ngModel)]="zip" class="form-control" name="zip_code" id="id_zip_code" placeholder="{{user?.zip_code}}">
       </div>
       <div class="form-group col-md-6">
-        <input  type="text" class="form-control" name="cell_number" id="id_cell_number" placeholder="{{user.cell_number}}">
+        <input type="text" [(ngModel)]="city" class="form-control" name="city" id="id_city" placeholder="{{user?.city}}">
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input  type="text" [(ngModel)]="localidade" class="form-control" name="localidade" id="id_localidade" placeholder="{{user?.localidade}}">
+      </div>
+      <div class="form-group col-md-6">
+        <input  type="text" [(ngModel)]="cell" class="form-control" name="cell_number" id="id_cell_number" placeholder="{{user?.cell_number}}">
       </div>
     </div>
 

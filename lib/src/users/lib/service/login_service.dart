@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'package:saoperolas/src/products/lib/model/product.dart';
+import 'package:saoperolas/src/users/lib/model/user.dart';
 import 'dart:convert';
 
 import '../../../constants.dart';
@@ -36,7 +37,6 @@ class LoginService {
       }));
       return _extractData(response);
     } catch(e) {
-      print(e.toString());
       return null;
     }
   }
@@ -60,6 +60,46 @@ class LoginService {
         .toList();
     } catch(e) {
       return [];
+    }
+  }
+
+  Future<String> updateUserDetails(String token, String email, String first_name, String last_name, String country, String address, String zip, String city, String localidade, String cell) async {
+    try {
+      var bod = {};
+      if(email != null) {
+        bod['email'] = email;
+      } if((first_name != null) && (first_name != "")) {
+        bod['first_name'] = first_name;
+      } if((last_name != null) && (last_name != "")) {
+        bod['last_name'] = last_name;
+      } if((country != null) && (country != "")) {
+        bod['country'] = country;
+      } if((address != null) && (address != "")) {
+        bod['address'] = address;
+      } if((zip != null) && (zip != "")) {
+        bod['zip_code'] = zip;
+      } if((city != null) && (zip != "")) {
+        bod['city'] = city;
+      } if((localidade != null) && (localidade != "")) {
+        bod['localidade'] = localidade;
+      } if((cell != null) && (cell != "")) {
+        bod['cell_number'] = cell;
+      }
+      final response = await _http.post(baseUrl + "/users/update-infos", headers: {'Authorization': 'Token ' + token}, body: jsonEncode(bod));
+      var clean = _extractData(response);
+      return clean['error'];
+    } catch(e) {
+      return "There was an error connecting to our server, please try again";
+    }
+  }
+
+  Future<User> getUserDetails(String token) async {
+    try {
+      final response = await _http.get(baseUrl + "/users/get-details", headers: {'Authorization': 'Token ' + token});
+      var clean = _extractData(response);
+      return User.fromJson(clean);
+    } catch(e) {
+      return null;
     }
   }
   
