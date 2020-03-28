@@ -51,6 +51,16 @@ class LoginService {
     }
   }
 
+  Future<String> removeFromFavourites(int id, String token) async {
+    try {
+      final response = await _http.post(baseUrl + "/users/remove-from-favs", headers: {'Authorization': 'Token ' + token}, body: jsonEncode({'id': id}));
+      var clean = _extractData(response);
+      return clean;
+    } catch(e) {
+      return "Erro ao conectar com o servidor";
+    }
+  }
+
   Future<List<Product>> getFavourites(String token) async {
     try {
       final response = await _http.get(baseUrl + "/users/get-favs", headers: {'Authorization': 'Token ' + token});

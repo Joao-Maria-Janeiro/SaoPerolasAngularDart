@@ -38,6 +38,12 @@ class ProductService {
 
   }
 
+  Future<bool> productIsFavourite(String token, int id) async {
+    final response = await _http.get(baseUrl + "/products/is-favourite/" + id.toString() + "/", headers: {'Authorization': 'Token ' + token});
+    var clean = _extractData(response);
+    return clean['isFavourite'];
+  }
+
   Future<List> getProductTypes() async {
     final response = await _http.get(baseUrl + "/products/types/");
     var clean = json.decode(response.body);

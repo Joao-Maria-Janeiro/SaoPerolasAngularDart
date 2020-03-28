@@ -28,7 +28,7 @@ class ProductDetailsComponent implements OnActivate {
   Router router;
   ProductDetailsComponent(this._service, this._cartService, this._userService, this.router);
   Product product;
-  bool added = false;
+  bool added = false, fav = false;
   String error;
 
   Future<void> addToCart(int id, String name, double price, String image, int quantity) async {
@@ -100,6 +100,20 @@ class ProductDetailsComponent implements OnActivate {
   void addToFavourites(int id) async {
     if (window.localStorage.containsKey('sao_perolas_key')) {
       error = await _userService.addToFavourites(id, window.localStorage['sao_perolas_key']);
+      fav = true;
+      // querySelector("#fav-input").style.display = "true";
+      // querySelector("not-fav-input").style.display = "false";
+    } else {
+      await router.navigate(RoutePaths.login.toUrl());
+    }
+  }
+
+  void removeFromFavourites(int id) async {
+    if (window.localStorage.containsKey('sao_perolas_key')) {
+      error = await _userService.removeFromFavourites(id, window.localStorage['sao_perolas_key']);
+      fav = false;
+      // querySelector("#fav-input").style.display = "false";
+      // querySelector("not-fav-input").style.display = "true";
     } else {
       await router.navigate(RoutePaths.login.toUrl());
     }
@@ -110,7 +124,10 @@ class ProductDetailsComponent implements OnActivate {
   @override
   void onActivate(_, RouterState current) async {
     final productId = getId(current.parameters);
-    if (productId != null) product = await _service.getProductFromId(productId);
+    if (productId != null) {
+      product = await _service.getProductFromId(productId);
+      fav = await _service.productIsFavourite(window.localStorage['sao_perolas_key'], productId);
+    }
   }
 
 }
