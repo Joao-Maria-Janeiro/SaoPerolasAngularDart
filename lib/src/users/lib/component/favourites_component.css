@@ -408,4 +408,27 @@ a, a:hover{
 }
 
 
+label input {
+    display: none; /* Hide the default checkbox */
+  }
+  
+  /* Style the artificial checkbox */
+  label span {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #BBC1E1;
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  
+  /* Style its checked state...with a ticked icon */
+  [type=checkbox]:checked + span:before {
+    content: '\2714';
+    position: absolute;
+    top: -5px;
+    left: 0;
+  }
+
 

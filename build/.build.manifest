@@ -4,6 +4,7 @@ delete-icn.svg
 favicon.png
 graylogo.png
 heart.png
+heart_empty.png
 index.html
 logo.png
 main.dart.js
@@ -299,6 +300,7 @@ packages/pedantic/analysis_options.1.8.0.yaml
 packages/pedantic/analysis_options.yaml
 packages/saoperolas/logo.png
 packages/saoperolas/pubspec.lock
+packages/saoperolas/src/users/lib/component/favs.scss
 packages/test/dart.js
 packages/test/src/runner/browser/static/favicon.ico
 packages/test/src/runner/browser/static/host.css

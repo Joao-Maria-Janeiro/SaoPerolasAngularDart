@@ -21,7 +21,10 @@
 <div class="container-3">
     <div *ngFor="let product of products; let i = index" class="col-md-3-b">
         <div *ngIf="editing==true">
-            <input type="checkbox" [checked]="saveProduct[i]" (change)="saveProduct[i] = !saveProduct[i]" id="c1"> 
+            <label>
+                <input type="checkbox" [checked]="saveProduct[i]" (change)="saveProduct[i] = !saveProduct[i]" id="c1"> 
+                <span></span>
+            </label>
         </div>
         <div class="thumbnail">
             <a [routerLink]="getUrl(product.id)"><img src="{{product.imageUrl}}"/></a>
@@ -30,4 +33,5 @@
 </div>
 
 <br><br>
+
 
