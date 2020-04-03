@@ -2,10 +2,32 @@
 
 <p style="color: red;">{{error}}</p>
 
+<div *ngIf="size>0" class="container">
+    <a *ngIf="editing==false" href="javascript:void(0)" (click)="editing=true" style="float: right;">Editar</a>
+    <div id="edit" style="float: right;">
+        <a href="javascript:void(0)" *ngIf="editing==true" (click)="removeFromFavourites()" style="float: right;">Remover</a>
+    </div>
+    <div id="cancel" style="float: right;">
+        <a href="javascript:void(0)"  *ngIf="editing==true" (click)="cleanUpAndReset()" style="float: right;">Cancelar</a>
+    </div>
+</div>
+
+<div *ngIf="size==0" class="container">
+    <h3 style="text-align: center;">Não tem produtos nos seus favoritos</h3>
+</div>
+
+<br><br>
+
 <div class="container-3">
-    <div *ngFor="let product of products" class="col-md-3-b">
+    <div *ngFor="let product of products; let i = index" class="col-md-3-b">
+        <div *ngIf="editing==true">
+            <input type="checkbox" [checked]="saveProduct[i]" (change)="saveProduct[i] = !saveProduct[i]" id="c1"> 
+        </div>
         <div class="thumbnail">
             <a [routerLink]="getUrl(product.id)"><img src="{{product.imageUrl}}"/></a>
         </div>
     </div>
 </div>
+
+<br><br>
+

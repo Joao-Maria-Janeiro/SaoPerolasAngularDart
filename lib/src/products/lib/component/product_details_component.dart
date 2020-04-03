@@ -101,8 +101,6 @@ class ProductDetailsComponent implements OnActivate {
     if (window.localStorage.containsKey('sao_perolas_key')) {
       error = await _userService.addToFavourites(id, window.localStorage['sao_perolas_key']);
       fav = true;
-      // querySelector("#fav-input").style.display = "true";
-      // querySelector("not-fav-input").style.display = "false";
     } else {
       await router.navigate(RoutePaths.login.toUrl());
     }
@@ -112,8 +110,6 @@ class ProductDetailsComponent implements OnActivate {
     if (window.localStorage.containsKey('sao_perolas_key')) {
       error = await _userService.removeFromFavourites(id, window.localStorage['sao_perolas_key']);
       fav = false;
-      // querySelector("#fav-input").style.display = "false";
-      // querySelector("not-fav-input").style.display = "true";
     } else {
       await router.navigate(RoutePaths.login.toUrl());
     }

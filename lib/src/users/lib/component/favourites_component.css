@@ -393,3 +393,19 @@ a.thumbnail.active {
         transform: scale(1.8);
     }
 }
+
+a, a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+#edit , #cancel {
+    display:inline-block;
+}
+
+#edit {
+    margin-left: 20px;
+}
+
+
+

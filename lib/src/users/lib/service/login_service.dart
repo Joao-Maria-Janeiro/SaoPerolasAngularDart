@@ -51,6 +51,20 @@ class LoginService {
     }
   }
 
+  Future<String> removeMultipleToFavourites(List<Product> products, String token) async {
+    try {
+      List prod = [];
+      for(Product product in products) {
+        prod.add({'id': product.id});
+      }
+      final response = await _http.post(baseUrl + "/users/remove-multiple-from-favs", headers: {'Authorization': 'Token ' + token}, body: jsonEncode(prod));
+      var clean = _extractData(response);
+      return clean["error"];
+    } catch(e) {
+      return "Erro ao conectar com o servidor";
+    }
+  }
+
   Future<String> removeFromFavourites(int id, String token) async {
     try {
       final response = await _http.post(baseUrl + "/users/remove-from-favs", headers: {'Authorization': 'Token ' + token}, body: jsonEncode({'id': id}));
