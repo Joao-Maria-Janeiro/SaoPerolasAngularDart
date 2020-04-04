@@ -20728,7 +20728,7 @@ k=C.f.b0(P.ae(["id",a],l,P.o),null)
 j=P.ae(["Authorization",C.b.u("Token ",b)],l,l)
 m.toString
 u=7
-return P.V(m.b4("POST","https://saoperolasrest.herokuapp.com//cart/add/",H.n(j,"$iC",[l,l],"$aC"),k,null),$async$er)
+return P.V(m.b4("POST","https://saoperolasrest.herokuapp.com/cart/add/",H.n(j,"$iC",[l,l],"$aC"),k,null),$async$er)
 case 7:n=d
 k=H.e(n,"$iaS")
 k=H.bC(J.H(C.f.Y(0,B.bg(J.H(U.bf(k.e).c.a,"charset")).Y(0,k.x)),"error"),{futureOr:1,type:P.j})
@@ -20760,7 +20760,7 @@ j=P.j
 i=P.ae(["Authorization",C.b.u("Token ",a)],j,j)
 k.toString
 u=7
-return P.V(k.bR("GET","https://saoperolasrest.herokuapp.com//cart/get/",H.n(i,"$iC",[j,j],"$aC")),$async$dU)
+return P.V(k.bR("GET","https://saoperolasrest.herokuapp.com/cart/get/",H.n(i,"$iC",[j,j],"$aC")),$async$dU)
 case 7:n=c
 j=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(j.e).c.a,"charset")).Y(0,j.x))
@@ -20795,7 +20795,7 @@ k=P.ae(["Authorization",C.b.u("Token ",d)],l,l)
 j=C.f.b0(P.ae(["id",a,"quantity",b,"operation",c],l,P.w),null)
 m.toString
 u=7
-return P.V(m.b4("POST","https://saoperolasrest.herokuapp.com//cart/product/update/",H.n(k,"$iC",[l,l],"$aC"),j,null),$async$eZ)
+return P.V(m.b4("POST","https://saoperolasrest.herokuapp.com/cart/product/update/",H.n(k,"$iC",[l,l],"$aC"),j,null),$async$eZ)
 case 7:n=f
 j=H.e(n,"$iaS")
 j=H.bC(J.H(C.f.Y(0,B.bg(J.H(U.bf(j.e).c.a,"charset")).Y(0,j.x)),"error"),{futureOr:1,type:P.j})
@@ -20828,7 +20828,7 @@ l=o.a
 u=b?7:9
 break
 case 7:u=10
-return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com//cart/create-intent/",null,C.f.b0(P.ae(["token",c],m,m),null),null),$async$cM)
+return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com/cart/create-intent/",null,C.f.b0(P.ae(["token",c],m,m),null),null),$async$cM)
 case 10:n=a3
 u=8
 break
@@ -20837,7 +20837,7 @@ k=J.H(a,"email")
 j=C.U.as(H.p(J.H(a,"full_name")))
 i=a0.a
 u=11
-return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com//cart/create-intent/",null,C.f.b0(P.ae(["email",k,"full_name",C.n.eA(0,C.d.b1(i.h5(new S.e_(j),f)),!0),"address",C.n.eA(0,C.d.b1(i.h5(new S.e_(C.U.as(H.p(J.H(a,"address")))),f)),!0),"city",J.H(a,"city"),"localidade",J.H(a,"localidade"),"zip",J.H(a,"zip"),"country",J.H(a,"country"),"cell",C.n.eA(0,C.d.b1(i.h5(new S.e_(C.U.as(H.p(J.H(a,"cell")))),f)),!0),"total_price",d,"products",J.H(C.f.ct(0,a1,null),"products")],m,null),null),null),$async$cM)
+return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com/cart/create-intent/",null,C.f.b0(P.ae(["email",k,"full_name",C.n.eA(0,C.d.b1(i.h5(new S.e_(j),f)),!0),"address",C.n.eA(0,C.d.b1(i.h5(new S.e_(C.U.as(H.p(J.H(a,"address")))),f)),!0),"city",J.H(a,"city"),"localidade",J.H(a,"localidade"),"zip",J.H(a,"zip"),"country",J.H(a,"country"),"cell",C.n.eA(0,C.d.b1(i.h5(new S.e_(C.U.as(H.p(J.H(a,"cell")))),f)),!0),"total_price",d,"products",J.H(C.f.ct(0,a1,null),"products")],m,null),null),null),$async$cM)
 case 11:n=a3
 case 8:m=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(m.e).c.a,"charset")).Y(0,m.x))
@@ -20998,7 +20998,7 @@ dW:function(){var u=0,t=P.a7([P.f,D.cC]),s,r=2,q,p=[],o=this,n,m,l,k,j
 var $async$dW=P.a8(function(a,b){if(a===1){q=b
 u=r}while(true)switch(u){case 0:r=4
 u=7
-return P.V(o.a.bR("GET","https://saoperolasrest.herokuapp.com//products/background/",null),$async$dW)
+return P.V(o.a.bR("GET","https://saoperolasrest.herokuapp.com/products/background/",null),$async$dW)
 case 7:n=b
 l=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(l.e).c.a,"charset")).Y(0,l.x))
@@ -21027,7 +21027,7 @@ dT:function(){var u=0,t=P.a7(D.h5),s,r=2,q,p=[],o=this,n,m,l,k,j
 var $async$dT=P.a8(function(a,b){if(a===1){q=b
 u=r}while(true)switch(u){case 0:r=4
 u=7
-return P.V(o.a.bR("GET","https://saoperolasrest.herokuapp.com//products/cover-photos/",null),$async$dT)
+return P.V(o.a.bR("GET","https://saoperolasrest.herokuapp.com/products/cover-photos/",null),$async$dT)
 case 7:n=b
 l=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(l.e).c.a,"charset")).Y(0,l.x))
@@ -21788,7 +21788,7 @@ k5:function(a){var u=0,t=P.a7([P.f,T.b_]),s,r=2,q,p=[],o=this,n,m,l,k,j
 var $async$e_=P.a8(function(b,c){if(b===1){q=c
 u=r}while(true)switch(u){case 0:r=4
 u=7
-return P.V(o.a.bR("GET","https://saoperolasrest.herokuapp.com//products/get/"+a+"/",null),$async$e_)
+return P.V(o.a.bR("GET","https://saoperolasrest.herokuapp.com/products/get/"+a+"/",null),$async$e_)
 case 7:n=c
 l=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(l.e).c.a,"charset")).Y(0,l.x))
@@ -21816,7 +21816,7 @@ return P.a6($async$e_,t)},
 dZ:function(a){var u=0,t=P.a7(T.b_),s,r=this,q
 var $async$dZ=P.a8(function(b,c){if(b===1)return P.a4(c,t)
 while(true)switch(u){case 0:u=3
-return P.V(r.a.bR("GET","https://saoperolasrest.herokuapp.com//products/details/"+C.c.l(a)+"/",null),$async$dZ)
+return P.V(r.a.bR("GET","https://saoperolasrest.herokuapp.com/products/details/"+C.c.l(a)+"/",null),$async$dZ)
 case 3:q=c
 s=T.x4(H.n(C.f.Y(0,B.bg(J.H(U.bf(q.e).c.a,"charset")).Y(0,q.x)),"$iC",[P.j,null],"$aC"))
 u=1
@@ -21833,7 +21833,7 @@ j=P.ae(["Authorization",C.b.u("Token ",a0)],k,k)
 i=C.f.b0(P.ae(["name",a,"description",b,"type",c,"price",J.bs(d),"quantity",J.bs(e),"image",f],k,null),null)
 l.toString
 u=7
-return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com//products/create/",H.n(j,"$iC",[k,k],"$aC"),i,null),$async$ez)
+return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com/products/create/",H.n(j,"$iC",[k,k],"$aC"),i,null),$async$ez)
 case 7:n=a2
 i=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(i.e).c.a,"charset")).Y(0,i.x))
@@ -21860,7 +21860,7 @@ return P.a6($async$ez,t)},
 eR:function(a,b){var u=0,t=P.a7(P.X),s,r=this,q,p,o,n,m
 var $async$eR=P.a8(function(c,d){if(c===1)return P.a4(d,t)
 while(true)switch(u){case 0:p=r.a
-o="https://saoperolasrest.herokuapp.com//products/is-favourite/"+C.c.l(b)+"/"
+o="https://saoperolasrest.herokuapp.com/products/is-favourite/"+C.c.l(b)+"/"
 n=P.j
 m=P.ae(["Authorization",C.b.u("Token ",a)],n,n)
 p.toString
@@ -21875,7 +21875,7 @@ return P.a6($async$eR,t)},
 d8:function(){var u=0,t=P.a7([P.f,,]),s,r=this,q
 var $async$d8=P.a8(function(a,b){if(a===1)return P.a4(b,t)
 while(true)switch(u){case 0:u=3
-return P.V(r.a.bR("GET","https://saoperolasrest.herokuapp.com//products/types/",null),$async$d8)
+return P.V(r.a.bR("GET","https://saoperolasrest.herokuapp.com/products/types/",null),$async$d8)
 case 3:q=b
 s=J.h0(H.fX(C.f.Y(0,B.bg(J.H(U.bf(q.e).c.a,"charset")).Y(0,q.x))),new U.qu(),null).b1(0)
 u=1
@@ -23300,7 +23300,7 @@ var $async$dF=P.a8(function(c,d){if(c===1){q=d
 u=r}while(true)switch(u){case 0:r=4
 m=P.j
 u=7
-return P.V(o.a.b4("POST","https://saoperolasrest.herokuapp.com//users/get-token",null,C.f.b0(P.ae(["email",a,"password",b],m,m),null),null),$async$dF)
+return P.V(o.a.b4("POST","https://saoperolasrest.herokuapp.com/users/get-token",null,C.f.b0(P.ae(["email",a,"password",b],m,m),null),null),$async$dF)
 case 7:n=d
 m=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(m.e).c.a,"charset")).Y(0,m.x))
@@ -23327,7 +23327,7 @@ kc:function(a,b,c,d,e,f,g,h,i,j,a0,a1){var u=0,t=P.a7(null),s,r=2,q,p=[],o=this,
 var $async$e1=P.a8(function(a2,a3){if(a2===1){q=a3
 u=r}while(true)switch(u){case 0:r=4
 u=7
-return P.V(o.a.b4("POST","https://saoperolasrest.herokuapp.com//users/signup",null,C.f.b0(P.ae(["email",a,"password1",b,"first_name",d,"last_name",e,"address",g,"city",i,"localidade",j,"zip_code",h,"country",f,"cell_number",a1],P.j,P.w),null),null),$async$e1)
+return P.V(o.a.b4("POST","https://saoperolasrest.herokuapp.com/users/signup",null,C.f.b0(P.ae(["email",a,"password1",b,"first_name",d,"last_name",e,"address",g,"city",i,"localidade",j,"zip_code",h,"country",f,"cell_number",a1],P.j,P.w),null),null),$async$e1)
 case 7:n=a3
 m=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(m.e).c.a,"charset")).Y(0,m.x))
@@ -23359,7 +23359,7 @@ j=P.ae(["Authorization",C.b.u("Token ",b)],k,k)
 i=C.f.b0(P.ae(["id",a],k,P.o),null)
 l.toString
 u=7
-return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com//users/add-to-favs",H.n(j,"$iC",[k,k],"$aC"),i,null),$async$eu)
+return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com/users/add-to-favs",H.n(j,"$iC",[k,k],"$aC"),i,null),$async$eu)
 case 7:n=d
 i=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(i.e).c.a,"charset")).Y(0,i.x))
@@ -23395,7 +23395,7 @@ h=P.ae(["Authorization",C.b.u("Token ",b)],i,i)
 f=C.f.b0(n,null)
 j.toString
 u=7
-return P.V(j.b4("POST","https://saoperolasrest.herokuapp.com//users/remove-multiple-from-favs",H.n(h,"$iC",[i,i],"$aC"),f,null),$async$eW)
+return P.V(j.b4("POST","https://saoperolasrest.herokuapp.com/users/remove-multiple-from-favs",H.n(h,"$iC",[i,i],"$aC"),f,null),$async$eW)
 case 7:l=a0
 f=H.e(l,"$iaS")
 k=C.f.Y(0,B.bg(J.H(U.bf(f.e).c.a,"charset")).Y(0,f.x))
@@ -23429,7 +23429,7 @@ j=P.ae(["Authorization",C.b.u("Token ",b)],k,k)
 i=C.f.b0(P.ae(["id",a],k,P.o),null)
 l.toString
 u=7
-return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com//users/remove-from-favs",H.n(j,"$iC",[k,k],"$aC"),i,null),$async$eV)
+return P.V(l.b4("POST","https://saoperolasrest.herokuapp.com/users/remove-from-favs",H.n(j,"$iC",[k,k],"$aC"),i,null),$async$eV)
 case 7:n=d
 i=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(i.e).c.a,"charset")).Y(0,i.x))
@@ -23462,7 +23462,7 @@ k=P.j
 j=P.ae(["Authorization",C.b.u("Token ",a)],k,k)
 l.toString
 u=7
-return P.V(l.bR("GET","https://saoperolasrest.herokuapp.com//users/get-favs",H.n(j,"$iC",[k,k],"$aC")),$async$dX)
+return P.V(l.bR("GET","https://saoperolasrest.herokuapp.com/users/get-favs",H.n(j,"$iC",[k,k],"$aC")),$async$dX)
 case 7:n=c
 k=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(k.e).c.a,"charset")).Y(0,k.x))
@@ -23507,7 +23507,7 @@ i=P.ae(["Authorization",C.b.u("Token ",a)],j,j)
 h=C.f.b0(n,null)
 k.toString
 u=7
-return P.V(k.b4("POST","https://saoperolasrest.herokuapp.com//users/update-infos",H.n(i,"$iC",[j,j],"$aC"),h,null),$async$f_)
+return P.V(k.b4("POST","https://saoperolasrest.herokuapp.com/users/update-infos",H.n(i,"$iC",[j,j],"$aC"),h,null),$async$f_)
 case 7:m=a6
 h=H.e(m,"$iaS")
 l=C.f.Y(0,B.bg(J.H(U.bf(h.e).c.a,"charset")).Y(0,h.x))
@@ -23540,7 +23540,7 @@ k=P.j
 j=P.ae(["Authorization",C.b.u("Token ",a0)],k,k)
 l.toString
 u=7
-return P.V(l.bR("GET","https://saoperolasrest.herokuapp.com//users/get-details",H.n(j,"$iC",[k,k],"$aC")),$async$e0)
+return P.V(l.bR("GET","https://saoperolasrest.herokuapp.com/users/get-details",H.n(j,"$iC",[k,k],"$aC")),$async$e0)
 case 7:n=a2
 j=H.e(n,"$iaS")
 m=C.f.Y(0,B.bg(J.H(U.bf(j.e).c.a,"charset")).Y(0,j.x))
