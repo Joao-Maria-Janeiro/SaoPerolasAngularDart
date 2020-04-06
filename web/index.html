@@ -126,7 +126,7 @@
 
               $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:8000/cart/complete-order/",
+                url: "https://saoperolasrest.herokuapp.com/cart/complete-order/",
                 data: JSON.stringify({secret: window.localStorage['sao_perolas_order_secret'], token: window.localStorage['sao_perolas_order_token']}),
                 dataType: "text",
                 success: function(resultData){
