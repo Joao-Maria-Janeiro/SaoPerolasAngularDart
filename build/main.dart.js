@@ -21096,7 +21096,7 @@ t.r=new G.bF(r)
 r=T.k(s,t.ch,"img")
 t.cx=r
 T.l(r,"alt","")
-T.l(t.cx,"style","width: 300px;")
+T.l(t.cx,"style","width: 200px;")
 t.v(t.cx)
 r=H.e(T.k(s,t.ch,"p"),"$it")
 t.j(r,"capitalize")
