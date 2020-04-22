@@ -77,6 +77,15 @@ class CartService {
       return null;
     }
   }
+
+  Future<dynamic> getOrderShipping(String secret, String token) async {
+    try {
+      final response = await _http.post(baseUrl + "/cart/order-shipping/", body: jsonEncode({'token': token, 'secret': secret}));
+      return _extractData(response);
+    } catch(e) {
+      return {};
+    }
+  }
   
   dynamic _extractData(Response resp) => json.decode(resp.body);
 }

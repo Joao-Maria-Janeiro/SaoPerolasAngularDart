@@ -1,6 +1,57 @@
 <br>
 
+<div class="container">
+  <div class="text-center">
+    <h3>Os produtos da sua encomenda</h3>
+  </div>
+
+  <div *ngFor="let product of cart?.products" class="item">
+    <div class="row">
+      <div class="col">
+        <img src="{{ product?.imageUrl }}" width="70"/>
+      </div>
+      <div class="col" style="margin-top: 15px;">
+        <span>{{ product.name }}</span>
+      </div>
+      <div class="col" style="margin-top: 15px;">
+        <span>x{{ product.quantity }}</span>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="text-center">
+    <h3>Os seus detalhes de envio</h3>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p>Nome: {{full_name}}</p>
+      Morada:
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {{address1}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {{address2}}
+    </div>
+  </div>
+</div>
+
+<br>
+
 <div id="container" class="container">
+  <div class="text-center">
+    <h3>Informações de pagamento</h3>
+  </div>
+  <br>
   <div class="text-center">
     <div *ngIf="loading" class="spinner-border text-secondary" role="status">
       <span class="sr-only">Loading...</span>

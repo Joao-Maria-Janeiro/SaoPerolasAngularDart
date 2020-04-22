@@ -1,5 +1,3 @@
-<!-- <p *ngFor="let product of cart?.products"> {{product.name}}</p> -->
-
 <br>
 <br>
 <br>
@@ -10,10 +8,6 @@
         </p>
     </div>
     <div class="old">
-    <!-- {% if error %} -->
-        <!-- <p style="color:red;">Esta quantidade de artigos não está disponível</p> -->
-    <!-- {% endif %} -->
-    <!-- {% for c in cart.products.all|dictsort:"id" %} -->
         <div *ngFor="let product of cart?.products" class="item">
             <div class="buttons">
                 <a (click)="changeProductQuantity(product.id, 'remove')"><span class="delete-btnz"></span></a>
