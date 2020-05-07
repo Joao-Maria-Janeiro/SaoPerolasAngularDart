@@ -122,7 +122,9 @@ class ProductDetailsComponent implements OnActivate {
     final productId = getId(current.parameters);
     if (productId != null) {
       product = await _service.getProductFromId(productId);
-      fav = await _service.productIsFavourite(window.localStorage['sao_perolas_key'], productId);
+      if(window.localStorage.containsKey('sao_perolas_key')) {
+        fav = await _service.productIsFavourite(window.localStorage['sao_perolas_key'], productId);
+      }
     }
   }
 

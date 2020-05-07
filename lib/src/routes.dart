@@ -12,7 +12,9 @@ import 'package:saoperolas/src/cart/lib/component/shipping_component.template.da
 import 'package:saoperolas/src/cart/lib/component/payment_component.template.dart' as payment_c;
 import 'package:saoperolas/src/users/lib/component/favourites_component.template.dart' as favourites_c;
 import 'package:saoperolas/src/users/lib/component/update_details_component.template.dart' as update_details_c;
-
+import 'package:saoperolas/src/index/lib/component/privacy_policy_component.template.dart' as privacy_plo_c;
+import 'package:saoperolas/src/index/lib/component/terms_and_conditions_component.template.dart' as terms_and_cond_c;
+import 'package:saoperolas/src/users/lib/component/previous_orders_component.template.dart' as prev_orders_c;
 
 class Routes {
   static final products = RouteDefinition(
@@ -60,6 +62,18 @@ class Routes {
     routePath: RoutePaths.update_details,
     component: update_details_c.UpdateDetailsComponentNgFactory,
   );
+  static final privacy_pol = RouteDefinition(
+    routePath: RoutePaths.privacy_policy,
+    component: privacy_plo_c.PrivacyPolicyComponentNgFactory,
+  );
+  static final terms_and_conds = RouteDefinition(
+    routePath: RoutePaths.terms_and_conditions,
+    component: terms_and_cond_c.TermsAndConditionsComponentNgFactory,
+  );
+  static final prev_orders = RouteDefinition(
+    routePath: RoutePaths.previous_orders,
+    component: prev_orders_c.PreviousOrdersComponentNgFactory,
+  );
   static final all = <RouteDefinition>[
     index,
     productDetails,
@@ -72,5 +86,8 @@ class Routes {
     favourites,
     update_details,
     products,
+    privacy_pol,
+    terms_and_conds,
+    prev_orders,
   ];
 }

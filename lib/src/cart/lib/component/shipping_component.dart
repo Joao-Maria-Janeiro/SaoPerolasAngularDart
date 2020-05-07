@@ -41,34 +41,39 @@ class ShippingComponent {
       errors = output["error"];
     } 
   }
+  
   Future<void> submitShippingDetails() async {
-    window.localStorage['sao_perolas_use_saved_details'] = 'false';
-    final key = Key.fromUtf8('my 32 length key................');
-    final iv = IV.fromSecureRandom(16);
-    final encrypter = Encrypter(AES(key));
-    dynamic shipping_details = jsonEncode(  
-      {
-        'full_name': encrypter.encrypt(full_name, iv: iv).base64,
-        'address': encrypter.encrypt(address, iv: iv).base64,
-        'city': city,
-        'localidade': localidade,
-        'zip': zip,
-        'country': country,
-        'cell': encrypter.encrypt(cell, iv: iv).base64,
-        'email': email
-      }
-    ); 
-    window.localStorage['sao_perolas_shipping'] = shipping_details;
-    dynamic output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, null, getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info']);
-    if(output.containsKey('token')) {
-      if (output['token'].startsWith("pi")) {
-        window.localStorage['sao_perolas_order_token'] = output['token'];
-        window.localStorage['sao_perolas_order_secret'] = output['secret'];
-        await router.navigate(RoutePaths.payment.toUrl());
-      }
+    if(window.localStorage.containsKey('sao_perolas_info') && (window.localStorage['sao_perolas_info'] != {"products":[]})) {
+      window.localStorage['sao_perolas_use_saved_details'] = 'false';
+      final key = Key.fromUtf8('my 32 length key................');
+      final iv = IV.fromSecureRandom(16);
+      final encrypter = Encrypter(AES(key));
+      dynamic shipping_details = jsonEncode(  
+        {
+          'full_name': encrypter.encrypt(full_name, iv: iv).base64,
+          'address': encrypter.encrypt(address, iv: iv).base64,
+          'city': city,
+          'localidade': localidade,
+          'zip': zip,
+          'country': country,
+          'cell': encrypter.encrypt(cell, iv: iv).base64,
+          'email': email
+        }
+      ); 
+      window.localStorage['sao_perolas_shipping'] = shipping_details;
+      dynamic output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, null, getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info']);
+      if(output.containsKey('token')) {
+        if (output['token'].startsWith("pi")) {
+          window.localStorage['sao_perolas_order_token'] = output['token'];
+          window.localStorage['sao_perolas_order_secret'] = output['secret'];
+          await router.navigate(RoutePaths.payment.toUrl());
+        }
+      } else {
+        errors = output["error"];
+      }   
     } else {
-      errors = output["error"];
-    }   
+      errors = 'O seu carrinho está vazio. Adicione pelo menos um produto antes de prosseguir';
+    }
   }
 
   Cart getCartFromInputJson(dynamic in_cart) {

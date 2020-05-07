@@ -35,9 +35,6 @@
     </div>
 
     <table class="table">
-        <!-- {% if error %}
-        <p style="color:red;">Esta quantidade de artigos não está disponível</p>
-        {% endif %} -->
         <thead>
             <tr>
                 <th scope="col">Produto</th>
@@ -105,7 +102,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <a href="{% url 'products' %}"><button name="button" class="btn btn-secondary" style="margin-top:20px">Continuar a Comprar</button></a>
+            <a (click)="goBack()"><button name="button" class="btn btn-secondary" style="margin-top:20px">Continuar a Comprar</button></a>
         </div>
 
         <div class="col-md-4">

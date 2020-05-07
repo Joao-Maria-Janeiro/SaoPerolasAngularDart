@@ -1,0 +1,37 @@
+<br><br>
+<div class="container">
+    <p style="color: red;">{{error}}</p>
+</div>
+<div class="container">
+    <div *ngFor="let order of orders" class="card">
+        <div class="card-header">
+            <a style="color: black;" href="javascript:void(0)" (click)="getOrderDetails(order)">
+                <div class="row">
+                    <div class="col-md-3">
+                        <span>Data da compra: {{order.date}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>Hora da compra: {{order.time}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>Preço total: {{order.price}} €</span>       
+                    </div>
+                    <div class="col-md-3"><i class="fas fa-caret-down"></i></div>
+                </div>
+            </a>
+
+        </div>
+        <div *ngIf="order.shipping != null" class="card-body">
+            <p style="color: blue; text-decoration: underline;" data-toggle="tooltip" data-placement="top" title="{{order?.shipping?.address1}} {{order?.shipping?.address2}}">{{order?.shipping?.name}}</p>
+            <div class="small">
+                <p>{{order?.shipping?.address1}}</p>
+                <p>{{order?.shipping?.address2}}</p>
+            </div>
+            <hr>
+            <h5>Produtos:</h5>
+            <p style="text-indent: 10%" *ngFor="let product of order.products">{{product.name}} x {{product.quantity}}</p>
+        </div>
+        <br>
+    </div>
+</div>
+<br>

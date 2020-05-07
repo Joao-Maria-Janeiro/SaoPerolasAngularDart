@@ -5,9 +5,8 @@
 <div class="container">
 
     <div *ngIf="added" class="alert alert-success" role="alert">
-        Produto adicionado ao carrinho
-        <a [routerLink]="getUrl()" >Ver Carrinho</a>
-        <!-- <button class="btn btn-secondary" [routerLink]="getUrl()" >Ver Carrinho</button> -->
+        Produto adicionado ao Cesto
+        <a [routerLink]="getUrl()" >Ver Cesto</a>
     </div>
 
     <div *ngIf="error!=''">
@@ -29,7 +28,7 @@
             <p>{{ product?.price }}€</p>
 
             <div *ngIf="product != null">
-                <button *ngIf="product.quantity > 0" (click)="addToCart(product.id, product.name, product.price, product.imageUrl, product.quantity)" class="btn btn-secondary pull-right" name="button">Adicionar ao Carrinho</button>
+                <button *ngIf="product.quantity > 0" (click)="addToCart(product.id, product.name, product.price, product.imageUrl, product.quantity)" class="btn btn-secondary pull-right" name="button">Adicionar ao Cesto</button>
                 <span *ngIf="product?.quantity <= 0">Este produto encontra-se temporarimante esgotado</span>
             </div>
            <br><br>

@@ -34,7 +34,7 @@ class CardMount {
 class PaymentComponent implements AfterViewChecked, OnActivate {
   CartService _cartService;
   PaymentComponent(this._cartService);
-  bool loading = true;
+  bool loading = true, submitted = false;
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
   Cart cart;
   dynamic shipping;
@@ -48,16 +48,22 @@ class PaymentComponent implements AfterViewChecked, OnActivate {
     });
   }
 
+  void setSubmitted() {
+    submitted = true;
+  }
+
   @override
   void onActivate(RouterState previous, RouterState current) async {
     if(!loggedIn) {
       dynamic cartz = jsonDecode(window.localStorage['sao_perolas_info']);
       cart = getCartFromInputJson(cartz);
-      shipping = await _cartService.getOrderShipping(window.localStorage['sao_perolas_order_secret'], window.localStorage['sao_perolas_order_token']);
-      full_name = shipping['nome'];
-      address1 = shipping['morada_1'];
-      address2 = shipping['morada_2'];
+    } else {
+      cart = await _cartService.getCartForUser(window.localStorage['sao_perolas_key']);
     }
+    shipping = await _cartService.getOrderShipping(window.localStorage['sao_perolas_order_secret'], window.localStorage['sao_perolas_order_token']);
+    full_name = shipping['nome'];
+    address1 = shipping['morada_1'];
+    address2 = shipping['morada_2'];
   }  
 
     Cart getCartFromInputJson(dynamic in_cart) {

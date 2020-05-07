@@ -13,8 +13,6 @@
     <h4 style="color:gray;">Escreva os seus dados pessoais</h4>
     <br>
     <br>
-    <!--{% if error %}-->
-    <!--{% endif %}-->
     <form id="signup-form" (ngSubmit)="onSubmit()" #userForm="ngForm">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -78,14 +76,11 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck" required>
                 <label class="form-check-label" for="gridCheck">
-                    Li e entendi a Política de Privacidade
+                    Li e entendi a <a style="text-decoration: underline; color: black;" [routerLink]="RoutePaths.privacy_policy.toUrl()">Política de Privacidade</a>
                 </label>
             </div>
         </div>
         <p *ngIf="submitted" style="color:red;">{{error}}</p>
-        <!--{% if form.errors %}-->
-        <!--<p class=" label label-danger">{{ form.errors }}</p>-->
-        <!--{% endif %}-->
         <button type="submit" value="Signup" class="btn btn-secondary">Registar</button>
     </form>
 </div>

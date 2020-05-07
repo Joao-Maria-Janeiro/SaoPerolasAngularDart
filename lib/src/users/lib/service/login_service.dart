@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'package:saoperolas/src/cart/lib/model/cart.dart';
 import 'package:saoperolas/src/products/lib/model/product.dart';
 import 'package:saoperolas/src/users/lib/model/user.dart';
 import 'dart:convert';
@@ -126,6 +127,19 @@ class LoginService {
       return null;
     }
   }
+
+  Future<dynamic> getPreviousOrders(String token) async {
+    try {
+      final resp = await _http.get(baseUrl + "/users/previous-orders" , headers: {'Authorization': 'Token ' + token});
+      var clean = _extractData(resp);
+      return (clean as List)
+        .map((order) => Order.fromJson(order))
+        .toList();
+    } catch(e) {
+      return {};
+    }
+  }
+ 
   
   dynamic _extractData(Response resp) => json.decode(resp.body);
 }

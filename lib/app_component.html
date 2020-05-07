@@ -8,6 +8,7 @@
     <div *ngIf="loggedIn">
         <a onclick="closeNav2()" [routerLink]="RoutePaths.favourites.toUrl()">Favoritos </a>
         <a onclick="closeNav2()" [routerLink]="RoutePaths.update_details.toUrl()">Editar Informaçoes </a>
+        <a onclick="closeNav2()" [routerLink]="RoutePaths.previous_orders.toUrl()">Encomendas anteriores </a>
         <a href="javascript:void(0)" onclick="closeNav2()" style="color: #818181;" (click)="logOut()">Terminar Sessão</a>
     </div>
     <a *ngIf="!loggedIn" onclick="closeNav2()" [routerLink]="RoutePaths.login.toUrl()" >Iniciar Sessão</a>

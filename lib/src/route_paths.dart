@@ -13,6 +13,9 @@ class RoutePaths {
   static final payment = RoutePath(path: 'payment');
   static final favourites = RoutePath(path: 'favourites');
   static final update_details = RoutePath(path: 'details/update');
+  static final privacy_policy = RoutePath(path: 'privacy-policy');
+  static final terms_and_conditions = RoutePath(path: 'terms-and-conditions');
+  static final previous_orders = RoutePath(path: 'previous-orders');
   static final index = RoutePath(path: '/');
 }
 String getName(Map<String, String> parameters) {

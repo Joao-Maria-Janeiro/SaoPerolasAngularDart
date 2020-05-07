@@ -1,6 +1,6 @@
 <br>
 
-<div class="container">
+<div *ngIf="submitted==false" class="container">
   <div class="text-center">
     <h3>Os produtos da sua encomenda</h3>
   </div>
@@ -23,7 +23,7 @@
 
 <br>
 
-<div class="container">
+<div *ngIf="submitted==false" class="container">
   <div class="text-center">
     <h3>Os seus detalhes de envio</h3>
   </div>
@@ -61,7 +61,7 @@
     <div id="card-element"></div>
     <div id="card-errors" role="alert"></div>
     <br>
-    <button class="btn btn-secondary" id="submit">Efetuar Pagamento</button>
+    <button (click)="setSubmitted()" class="btn btn-secondary" id="submit">Efetuar Pagamento</button>
   </form>
 </div>
 <br>

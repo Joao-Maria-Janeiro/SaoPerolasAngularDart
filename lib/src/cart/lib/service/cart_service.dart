@@ -86,6 +86,15 @@ class CartService {
       return {};
     }
   }
+
+  Future<dynamic> getOrderCartAndShipping(String user_token, String id) async {
+    try {
+      final response = await _http.post(baseUrl + "/cart/order-shipping-and-cart/", headers: {'Authorization': 'Token ' + user_token}, body: jsonEncode({'id': id}));
+      return _extractData(response);
+    } catch(e) {
+      return {};
+    }
+  }
   
   dynamic _extractData(Response resp) => json.decode(resp.body);
 }

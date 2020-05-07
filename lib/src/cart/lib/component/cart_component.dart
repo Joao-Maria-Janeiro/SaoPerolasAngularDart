@@ -22,9 +22,11 @@ class CartComponent implements OnActivate {
   Cart cart;
   dynamic cart_window = window.localStorage.containsKey('sao_perolas_info') ? jsonDecode(window.localStorage['sao_perolas_info']) : {};
   CartService _cartService;
-  CartComponent(this._cartService);
+  Router router;
+  CartComponent(this._cartService, this.router);
   String error;
   String shippingUrl = RoutePaths.shipping.toUrl();
+  RouterState _previous;
 
 
   void changeProductQuantity(int id, String operation) async {   
@@ -97,8 +99,13 @@ class CartComponent implements OnActivate {
     }
   }
 
+  void goBack() async{
+    await router.navigate(_previous.path);
+  }
+
   @override
   void onActivate(RouterState previous, RouterState current) async {
+    _previous = previous;
     if (!loggedIn) {
       cart = getCartFromInputJson(cart_window);
     } else {
