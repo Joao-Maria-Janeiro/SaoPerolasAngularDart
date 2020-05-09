@@ -1,3 +1,4 @@
+.dart_tool/package_config.json
 .packages
 check-mark.png
 delete-icn.svg
@@ -9,13 +10,7 @@ index.html
 logo.png
 main.dart.js
 minus.svg
-packages/$sdk/_internal/ddc_sdk.sum
 packages/$sdk/_internal/strong.sum
-packages/$sdk/dev_compiler/amd/dart_sdk.js
-packages/$sdk/dev_compiler/amd/require.js
-packages/$sdk/dev_compiler/common/dart_sdk.js
-packages/$sdk/dev_compiler/common/run.js
-packages/$sdk/dev_compiler/es6/dart_sdk.js
 packages/$sdk/dev_compiler/kernel/amd/dart_sdk.js
 packages/$sdk/dev_compiler/kernel/amd/require.js
 packages/$sdk/dev_compiler/kernel/common/dart_sdk.js
@@ -297,6 +292,7 @@ packages/pedantic/analysis_options.1.5.0.yaml
 packages/pedantic/analysis_options.1.6.0.yaml
 packages/pedantic/analysis_options.1.7.0.yaml
 packages/pedantic/analysis_options.1.8.0.yaml
+packages/pedantic/analysis_options.1.9.0.yaml
 packages/pedantic/analysis_options.yaml
 packages/saoperolas/logo.png
 packages/saoperolas/pubspec.lock
