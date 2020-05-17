@@ -119,7 +119,7 @@
               document.getElementById('payment-form').outerHTML = ""; 
               document.getElementById('container').innerHTML = '<br><br><br><div class="text-center"><img style="width:90px" src = "https://i.ibb.co/dcqx1fh/check-mark-1.png"></img><br><br><p>A sua compra foi efetuada com sucesso</p><p>Irá receber um comprovativo por email</p></div><br><br>';
 
-              window.localStorage['sao_perolas_info'] = JSON.stringify("{[]}");
+              window.localStorage['sao_perolas_info'] = JSON.stringify({'products':[]});
 
               $.ajax({
                 type: "POST",

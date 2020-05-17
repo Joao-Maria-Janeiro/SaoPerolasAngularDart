@@ -96,6 +96,7 @@ class CartComponent implements OnActivate {
           );
         }
       }
+      window.localStorage['sao_perolas_info'] = cartToJson(cart);
     }
   }
 
@@ -110,17 +111,7 @@ class CartComponent implements OnActivate {
       cart = getCartFromInputJson(cart_window);
     } else {
       cart = await _cartService.getCartForUser(window.localStorage['sao_perolas_key']);
-      List products = 
-        cart.products.map((product) => 
-          {
-            'id': product.id, 
-            'name': product.name, 
-            'quantity': product.quantity, 
-            'unit_price': product.unit_price, 
-            'image': product.imageUrl
-          }
-        ).toList();
-      window.localStorage['sao_perolas_info'] = jsonEncode({'products': products});
+      window.localStorage['sao_perolas_info'] = cartToJson(cart);
     }
   }
 
@@ -136,5 +127,19 @@ class CartComponent implements OnActivate {
       );
     }
     return Cart(-1, products, shipping_cost, total_price == 0 ? 0 : total_price + shipping_cost);
+  }
+
+  dynamic cartToJson(Cart cart) {
+    List products = 
+      cart.products.map((product) => 
+        {
+          'id': product.id, 
+          'name': product.name, 
+          'quantity': product.quantity, 
+          'unit_price': product.unit_price, 
+          'image': product.imageUrl
+        }
+      ).toList();
+    return jsonEncode({'products': products});
   }
 }
