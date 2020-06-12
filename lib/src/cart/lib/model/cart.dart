@@ -27,7 +27,8 @@ class Cart {
 
 class OrderShipping {
   String address1, address2, name;
-  OrderShipping(this.address1, this.address2, this.name);
+  bool show;
+  OrderShipping(this.address1, this.address2, this.name, this.show);
 }
 
 class OrderProduct {

@@ -39,7 +39,9 @@ class PreviousOrdersComponent implements OnActivate {
     if (order.products.isEmpty) {
       dynamic order_details = await _cartService.getOrderCartAndShipping(window.localStorage['sao_perolas_key'], order.paymnet_intent_id);
       order_details['products'].forEach((k,v) => order.products.add(OrderProduct(k, v)));
-      order.shipping = OrderShipping(order_details['morada_1'], order_details['morada_2'], order_details['nome']);
+      order.shipping = OrderShipping(order_details['morada_1'], order_details['morada_2'], order_details['nome'], true);
+    } else {
+      order.shipping.show = !order.shipping.show;
     }
   }
 }

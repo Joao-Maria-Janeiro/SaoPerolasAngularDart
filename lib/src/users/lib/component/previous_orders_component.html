@@ -16,12 +16,16 @@
                     <div class="col-md-3">
                         <span>Preço total: {{order.price}} €</span>       
                     </div>
-                    <div class="col-md-3"><i class="fas fa-caret-down"></i></div>
+                    <div class="col-md-3"> 
+                        <span *ngIf="order.shipping == null"> <i class="fas fa-caret-down"></i> </span>
+                        <span *ngIf="(order.shipping != null) && (order.shipping.show == true)"> <i class="fas fa-caret-up"></i>  </span>
+                        <span *ngIf="(order.shipping != null) && (order.shipping.show == false)"> <i  class="fas fa-caret-down"></i> </span>
+                    </div>
                 </div>
             </a>
-
         </div>
-        <div *ngIf="order.shipping != null" class="card-body">
+
+        <div *ngIf="(order.shipping != null) && (order.shipping.show)" class="card-body">
             <p style="color: blue; text-decoration: underline;" data-toggle="tooltip" data-placement="top" title="{{order?.shipping?.address1}} {{order?.shipping?.address2}}">{{order?.shipping?.name}}</p>
             <div class="small">
                 <p>{{order?.shipping?.address1}}</p>

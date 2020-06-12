@@ -8,9 +8,11 @@
   <h1>Detalhes de envio</h1>
 
     <button *ngIf="loggedIn" (click)="setUserDetails(true)" class="btn btn-secondary" name="button">Quero usar os dados da minha conta</button>
+    <button *ngIf="!loggedIn" [routerLink]="loginUrl" class="btn btn-secondary" name="button">Criar Conta</button>
   <br><br><br>
 
   <div id="content-container" class="container p-none">
+      <h3 *ngIf="!loggedIn">Ou continuar como convidado</h3>
       <div class="lgn-container col-lg-8">
           <form (ngSubmit)="submitShippingDetails()" #userForm="ngForm">
               <table class="table">

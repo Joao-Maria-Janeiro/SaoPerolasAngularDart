@@ -1,10 +1,10 @@
-@media only screen and (max-width: 600px)  {
+@media only screen and (max-width: 770px)  {
     .small {
         display: inline;
     }
 }
 
-@media only screen and (min-width: 600px)  {
+@media only screen and (min-width: 770px)  {
     .small {
         display: none;
     }

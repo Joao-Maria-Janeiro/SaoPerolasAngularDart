@@ -24,6 +24,8 @@ class ShippingComponent {
   ShippingComponent(this.router, this._cartService);
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
   String full_name, address, city, localidade, zip, country, cell, email, errors;
+  String loginUrl = RoutePaths.login.toUrl();
+
 
   Future<void> setUserDetails(bool userServerDetails) async {
     if(userServerDetails) {

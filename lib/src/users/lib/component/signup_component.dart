@@ -31,6 +31,10 @@ class SignupComponent {
       error = 'As passwords não são iguais';
       return;
     }
+    if(!email.split("@")[1].contains(".")) {
+      error = "E-mail inválido";
+      return;
+    }
     response = await _service.signup(email, password1, password2, firstName, lastName, country, address, zip, city, localidade, error, cell);
     if (response.containsKey('error')) {
       error = response['error'];
