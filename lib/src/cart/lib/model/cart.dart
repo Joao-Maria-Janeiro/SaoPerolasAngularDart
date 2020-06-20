@@ -21,7 +21,7 @@ class Cart {
   int id;
   List<CartProduct> products;
   double total_price;
-  double shipping_cost;
+  int shipping_cost;
   Cart(this.id, this.products, this.shipping_cost, this.total_price);
 }
 

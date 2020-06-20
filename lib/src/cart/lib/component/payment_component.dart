@@ -14,8 +14,6 @@ import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 import 'package:saoperolas/src/products/lib/model/product.dart';
 import 'package:saoperolas/src/route_paths.dart';
 import 'package:js/js.dart';
-import '../../../constants.dart';
-
 
 @JS()
 external void mountTheCard();
@@ -39,6 +37,7 @@ class PaymentComponent implements AfterViewChecked, OnActivate {
   Cart cart;
   dynamic shipping;
   String full_name, address1, address2;
+  int shipping_cost;
 
   @override
   void ngAfterViewChecked() {
@@ -54,6 +53,7 @@ class PaymentComponent implements AfterViewChecked, OnActivate {
 
   @override
   void onActivate(RouterState previous, RouterState current) async {
+    shipping_cost = await _cartService.getShippingPrice();
     if(!loggedIn) {
       dynamic cartz = jsonDecode(window.localStorage['sao_perolas_info']);
       cart = getCartFromInputJson(cartz);

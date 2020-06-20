@@ -8,8 +8,6 @@ import 'package:angular_router/angular_router.dart';
 import 'package:saoperolas/src/cart/lib/model/cart.dart';
 import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 
-import '../../../constants.dart';
-
 
 @Component (
   selector: 'cart',
@@ -27,6 +25,7 @@ class CartComponent implements OnActivate {
   String error;
   String shippingUrl = RoutePaths.shipping.toUrl();
   RouterState _previous;
+  int shipping_cost;
 
 
   void changeProductQuantity(int id, String operation) async {   
@@ -106,6 +105,7 @@ class CartComponent implements OnActivate {
 
   @override
   void onActivate(RouterState previous, RouterState current) async {
+    shipping_cost = await _cartService.getShippingPrice();
     _previous = previous;
     if (!loggedIn) {
       cart = getCartFromInputJson(cart_window);
@@ -142,4 +142,5 @@ class CartComponent implements OnActivate {
       ).toList();
     return jsonEncode({'products': products});
   }
+
 }

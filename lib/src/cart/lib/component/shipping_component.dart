@@ -10,21 +10,19 @@ import 'package:saoperolas/src/cart/lib/service/cart_service.dart';
 import 'package:saoperolas/src/route_paths.dart';
 
 
-import '../../../constants.dart';
-
-
 @Component (
   selector: 'shipping',
   directives: [coreDirectives,formDirectives, routerDirectives],
   templateUrl: 'shipping_component.html',
 )
-class ShippingComponent {
+class ShippingComponent implements OnInit {
   Router router;
   CartService _cartService;
   ShippingComponent(this.router, this._cartService);
   bool loggedIn = window.localStorage.containsKey('sao_perolas_key');
   String full_name, address, city, localidade, zip, country, cell, email, errors;
   String loginUrl = RoutePaths.login.toUrl();
+  int shipping_cost;
 
 
   Future<void> setUserDetails(bool userServerDetails) async {
@@ -88,6 +86,11 @@ class ShippingComponent {
       }
     );
     return Cart(-1, products, shipping_cost, total_price == 0 ? 0 : total_price + shipping_cost);
+  }
+
+  @override
+  void ngOnInit() async {
+    shipping_cost = await _cartService.getShippingPrice();
   }
 }
 

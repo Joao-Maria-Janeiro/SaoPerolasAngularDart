@@ -28,7 +28,7 @@ class CartService {
       (clean['products'] as List)
         .map((product) => CartProduct.fromJson(product))
         .toList();
-      return Cart(clean['id'], products, shipping_cost, clean['total_price']);
+      return Cart(clean['id'], products, await getShippingPrice(), clean['total_price']);
     } catch(e) {
       return null;
     }
@@ -112,6 +112,15 @@ class CartService {
       return _extractData(response);
     } catch(e) {
       return {};
+    }
+  }
+
+  Future<int> getShippingPrice() async {
+    try {
+      final response = await _http.get(baseUrl + "/cart/shipping-price/");
+      return _extractData(response)['price'];
+    } catch(e) {
+      return 3;
     }
   }
   
