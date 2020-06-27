@@ -23,7 +23,8 @@ class DisplayProductComponent implements OnActivate {
   @override
   void onActivate(_, RouterState current) async {
     final productType = getName(current.parameters);
-    if (productType != null)
+    if (productType != null){
       products = await _service.getProductsForType(productType);
+    }
   }
 }
