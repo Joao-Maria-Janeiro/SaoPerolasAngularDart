@@ -7,3 +7,14 @@
         </div>
     </div>
 </div>
+
+<br>
+
+
+<div *ngIf="otherProducts.length>0" class="container-3">
+    <div *ngFor="let product of otherProducts" class="col-md-3-b">
+        <div class="thumbnail">
+                <a [routerLink]="getUrl(product.id)"><img width="400" src="{{product.imageUrl}}"/></a>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,15 @@
 .dart_tool/package_config.json
 .packages
 accepted_cards.png
+android-chrome-192x192.png
+android-chrome-512x512.png
+apple-touch-icon.png
+browserconfig.xml
 check-mark.png
 delete-icn.svg
+favicon-16x16.png
+favicon-32x32.png
+favicon.ico
 favicon.png
 graylogo.png
 heart.png
@@ -11,6 +18,7 @@ index.html
 logo.png
 main.dart.js
 minus.svg
+mstile-150x150.png
 packages/$sdk/_internal/strong.sum
 packages/$sdk/dev_compiler/kernel/amd/dart_sdk.js
 packages/$sdk/dev_compiler/kernel/amd/require.js
@@ -304,4 +312,6 @@ packages/test/src/runner/browser/static/host.css
 packages/test/src/runner/browser/static/host.dart.js
 packages/test/src/runner/browser/static/index.html
 plus.svg
+safari-pinned-tab.svg
+site.webmanifest
 styles.css

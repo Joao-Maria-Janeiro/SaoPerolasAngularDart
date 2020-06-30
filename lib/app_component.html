@@ -1,5 +1,6 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="nav-link capitalize" onclick="closeNav()" [routerLink]="getUrl('all')" [routerLinkActive]="'active'">Ver Tudo</a>
     <a *ngFor="let type of types" class="nav-link capitalize" onclick="closeNav()" [routerLink]="getUrl(type)"  [routerLinkActive]="'active'">{{type}}</a>
 </div>
 
