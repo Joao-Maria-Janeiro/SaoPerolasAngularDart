@@ -134,13 +134,13 @@
                 data: JSON.stringify({'secret': window.localStorage['sao_perolas_order_secret'], 'token': window.localStorage['sao_perolas_order_token'], 'user_token': window.localStorage['sao_perolas_key']}),
                 dataType: "text",
                 success: function(resultData){
+                var result = JSON.parse(resultData);
+                if(result["error"] != "") {
+                  document.getElementById('container').innerHTML = '<h2 style="color: red;">' + result['error'] + '</h2>'; 
+                }
                 window.localStorage.removeItem('sao_perolas_order_token');
                 window.localStorage.removeItem('sao_perolas_order_secret');
                 window.localStorage.removeItem('sao_perolas_use_saved_details');
-                  var result = JSON.parse(resultData);
-                  if(result["error"] != "") {
-                    alert(result); 
-                  }
                 }
               });
             }
