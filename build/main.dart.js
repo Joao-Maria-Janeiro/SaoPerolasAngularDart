@@ -23543,7 +23543,8 @@ s=G.bB(u.a.a(r.M(C.l,s)),u.F.a(r.M(C.p,s)),null,q.y)
 q.f=new G.bj(s)
 s=T.e(p,q.y,"img")
 q.z=s
-T.j(s,"width","400")
+T.j(s,"loading","lazy")
+T.j(q.z,"width","400")
 q.v(q.z)
 s=q.y
 r=q.f.e;(s&&C.q).A(s,"click",q.u(r.gaQ(r),u.B,u.V))
@@ -23594,7 +23595,8 @@ s=G.bB(u.a.a(r.M(C.l,s)),u.F.a(r.M(C.p,s)),null,q.y)
 q.f=new G.bj(s)
 s=T.e(p,q.y,"img")
 q.z=s
-T.j(s,"width","400")
+T.j(s,"loading","lazy")
+T.j(q.z,"width","400")
 q.v(q.z)
 s=q.y
 r=q.f.e;(s&&C.q).A(s,"click",q.u(r.gaQ(r),u.B,u.V))
