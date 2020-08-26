@@ -9,7 +9,7 @@
         <div class="row">
             <div *ngFor="let cover of covers" class="col-md-auto">
                 <a [routerLink]="getUrl(cover.type)">
-                    <img style="width: 200px;" src="{{cover.image}}" alt="">
+                    <img loading="lazy" style="width: 200px;" src="{{cover.image}}" alt="">
                     <p class="capitalize" style="color:gray;">{{cover.type}}</p>
                 </a>
             </div>

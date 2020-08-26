@@ -22363,6 +22363,7 @@ r.r=new G.bj(t)
 t=T.e(q,r.z,"img")
 r.Q=t
 T.j(t,"alt","")
+T.j(r.Q,"loading","lazy")
 T.j(r.Q,"style","width: 200px;")
 r.v(r.Q)
 o=o.a(T.e(q,r.z,"p"))
