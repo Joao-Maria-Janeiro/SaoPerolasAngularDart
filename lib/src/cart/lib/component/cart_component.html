@@ -86,6 +86,35 @@
 
 <br>
 <div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+            <input div="coupon-code" type="text" [(ngModel)] = "coupon_code" class="form-control" placeholder="Cupão Promocional">
+            <div *ngIf="error_coupon!=''">
+                <p style="color: red;" >
+                   {{error_coupon}}
+                </p>
+            </div>
+            <div *ngIf="success_coupon!=''">
+                <p style="color: green;" >
+                    {{success_coupon}}
+                 </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <a (click)="checkCoupon()" ><button class="btn btn-secondary">Aplicar</button></a>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div *ngIf="coupon_discount != 0" class="col-md-8">
+            <p style="color: red;">Desconto: -{{coupon_discount}}€</p>
+        </div>
+    </div>
+
+    <br>
   
     <div class="row">
         <div class="col-md-8">

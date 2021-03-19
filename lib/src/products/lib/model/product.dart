@@ -15,7 +15,7 @@ class Product {
         product['description'],
         product['image'],
         product['product_type'],
-        product['price'],
+        double.parse(product['price']),
         product['available_quantity']
     );
 

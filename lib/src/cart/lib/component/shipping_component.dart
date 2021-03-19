@@ -30,7 +30,7 @@ class ShippingComponent implements OnInit {
       window.localStorage['sao_perolas_use_saved_details'] = 'true';
       window.localStorage.remove('sao_perolas_shipping');
     }
-    dynamic output = await _cartService.createPaymentIntentAndOrder(null, userServerDetails, window.localStorage['sao_perolas_key'], 0, null, null, null, null, true);
+    dynamic output = await _cartService.createPaymentIntentAndOrder(null, userServerDetails, window.localStorage['sao_perolas_key'], 0, null, null, null, null, true, coupon: (window.localStorage.containsKey('coupon') ? window.localStorage['coupon'] : ''));
     if(output.containsKey('token')) {
       if (output['token'].startsWith("pi")) {
         window.localStorage['sao_perolas_order_token'] = output['token'];
@@ -61,7 +61,7 @@ class ShippingComponent implements OnInit {
         }
       ); 
       window.localStorage['sao_perolas_shipping'] = shipping_details;
-      dynamic output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, window.localStorage.containsKey('sao_perolas_key') ? window.localStorage['sao_perolas_key'] : '', getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info'], loggedIn);
+      dynamic output = await _cartService.createPaymentIntentAndOrder(shipping_details, false, window.localStorage.containsKey('sao_perolas_key') ? window.localStorage['sao_perolas_key'] : '', getCartFromInputJson(jsonDecode(window.localStorage['sao_perolas_info'])).total_price, email, iv, encrypter, window.localStorage['sao_perolas_info'], loggedIn, coupon: (window.localStorage.containsKey('coupon') ? window.localStorage['coupon'] : ''));
       if(output.containsKey('token')) {
         if (output['token'].startsWith("pi")) {
           window.localStorage['sao_perolas_order_token'] = output['token'];
